@@ -1,0 +1,54 @@
+.search-panel {
+	background-color: #222;	
+}
+
+.search-panel > li {
+	padding: 10px;
+	color: #fff;
+}
+
+.search-panel .wrapper {
+	width: 100%;
+	height: auto;
+	padding: 5px;
+}
+
+.search-column {
+	width: 16%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.search-column div {
+	display: block;
+}
+
+.search-column .search-title {
+	margin-bottom: 20px;
+	text-transform: uppercase;
+}
+
+.search-content span {
+	display: block;
+	padding: 5px 0;
+}
+
+.btn-search {
+	float: right;
+	margin-bottom: 10px;
+	background-color: transparent;
+	color: #fff;
+}
+
+@media (min-width: 768px) {
+	.search-panel {
+		width: 750px;
+	}
+}
+
+@media (min-width: 992px) {
+	.search-panel {
+		width: 970px;
+	}
+}
+
