@@ -21,7 +21,12 @@ $f3->route('GET /about','main->about');
 $f3->route('GET /contacts','main->contacts');
 $f3->route('GET /delivery','main->delivery');
 
-//$f3->route('POST /flats','main->flats');
+$f3->route('GET /login','admin->login');
+$f3->route('GET /admin','admin->index');
+$f3->route('GET /admin/create','admin->create');
+
+$f3->route('POST /login','admin->login');
+$f3->route('POST /logout','admin->logout');
 //$f3->route('POST /admin','admin->index');
 
 
@@ -31,5 +36,12 @@ $f3->set('ONERROR',
         var_dump($f3->get('ERROR.text'));
     }
 );
+
+// set DB
+$f3->set('db', new DB\SQL(
+    'mysql:host=localhost;port=3306;dbname=sm',
+    'root',
+    '1'
+));
 
 $f3->run();
