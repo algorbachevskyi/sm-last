@@ -45,9 +45,9 @@
     <script src="ui/js/plugins/metisMenu/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="ui/js/plugins/morris/raphael.min.js"></script>
-    <script src="ui/js/plugins/morris/morris.min.js"></script>
-    <script src="ui/js/plugins/morris/morris-data.js"></script>
+    <!--<script src="ui/js/plugins/morris/raphael.min.js"></script>-->
+    <!--<script src="ui/js/plugins/morris/morris.min.js"></script>-->
+    <!--<script src="ui/js/plugins/morris/morris-data.js"></script>-->
 
     <script src="ui/js/custom/admin.js"></script>
 
@@ -55,3 +55,95 @@
 
 </head>
 <body>
+
+
+
+<!--admin page-->
+<!--<form action="/logout" method="post">-->
+<!--<input type="submit" value="log out"/>-->
+<!--</form>-->
+<!--<div id="wrapper">-->
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">Sun Market - панель адміністратора</a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <ul class="nav navbar-top-links navbar-right">
+
+
+        <!-- /.dropdown -->
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+                <!--<li class="divider"></li>-->
+                <li>
+                    <div style="padding: 5px; cursor: pointer;" onclick="$('#logout-form').submit();"><i class="fa fa-sign-out fa-fw"></i> Logout</div>
+                </li>
+            </ul>
+            <form action="/logout" method="post" id="logout-form" class="hidden"></form>
+            <!-- /.dropdown-user -->
+        </li>
+        <!-- /.dropdown -->
+    </ul>
+    <!-- /.navbar-top-links -->
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <!--<li class="sidebar-search">-->
+                <!--<div class="input-group custom-search-form">-->
+                <!--<input type="text" class="form-control" placeholder="Search...">-->
+                <!--<span class="input-group-btn">-->
+                <!--<button class="btn btn-default" type="button">-->
+                <!--<i class="fa fa-search"></i>-->
+                <!--</button>-->
+                <!--</span>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; /input-group &ndash;&gt;-->
+                <!--</li>-->
+                <li>
+                    <a class="active" href=""><i class="fa fa-dashboard fa-fw"></i> Замовлення </a>
+                </li>
+                <li>
+                    <a href=""><i class="fa fa-bar-chart-o fa-fw"></i> Продукти<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="">Всі продукти</a>
+                        </li>
+                        <li>
+                            <a href="">Додати продукт</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href=""><i class="fa fa-wrench fa-fw"></i> Категорії<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="">Всі категорії</a>
+                        </li>
+                        <li>
+                            <a href="">Додати категорію</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+</nav>
+
+<div id="page-wrapper">

@@ -9,6 +9,7 @@ class Admin {
         } else {
             echo View::instance()->render('a-header.html');
             echo View::instance()->render('admin.html');
+            echo View::instance()->render('a-footer.html');
 
 
 
@@ -17,7 +18,6 @@ class Admin {
     }
 
     function login($f3) {
-        echo View::instance()->render('a-header.html');
         echo View::instance()->render('login.html');
 
         $db = $f3->get('db');
