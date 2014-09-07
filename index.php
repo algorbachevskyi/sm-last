@@ -23,10 +23,15 @@ $f3->route('GET /delivery','main->delivery');
 
 $f3->route('GET /login','admin->login');
 $f3->route('GET /admin','admin->index');
-$f3->route('GET /admin/create','admin->create');
+$f3->route('GET /admin/product/add','admin->add');
+$f3->route('GET /admin/products','admin->products');
+$f3->route('GET /admin/product/@id','admin->edit');
+$f3->route('GET /admin/categories','admin->categories');
 
 $f3->route('POST /login','admin->login');
 $f3->route('POST /logout','admin->logout');
+
+$f3->route('POST /admin/product/add','admin->add');
 //$f3->route('POST /admin','admin->index');
 
 
