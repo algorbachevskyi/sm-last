@@ -24,12 +24,20 @@
                         </tr>
                         </thead>
                         <tbody>
+
+                        <?php foreach($categories as $category): ?>
                         <tr>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td><i class="fa fa-pencil text-primary"></i></td>
-                            <td><i class="fa fa-times text-danger"></i></td>
+                            <td><?= $category['name'] ?></td>
+                            <td class="center"><?= $category['about'] ?></td>
+                            <td> <a href="/admin/category/<?= $category['id'] ?>"><i class="fa fa-pencil text-primary text-center"></i></a> </td>
+                            <td> <a onclick="$('#form-delete-<?= $category['id'] ?>').submit();"> <i class="fa fa-times text-danger text-center"></i></a>
+                                <form action="/admin/delete" method="post" class="hidden" id="form-delete-<?= $category['id'] ?>">
+                                    <input type="hidden" name="categoryId" value="<?= $category['id'] ?>"/>
+                                    <input type="hidden" name="delete_category" value="true"/>
+                                </form>
+                            </td>
                         </tr>
+                        <?php endforeach;?>
 
                         </tbody>
                     </table>

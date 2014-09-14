@@ -27,11 +27,18 @@ $f3->route('GET /admin/product/add','admin->add');
 $f3->route('GET /admin/products','admin->products');
 $f3->route('GET /admin/product/@id','admin->edit');
 $f3->route('GET /admin/categories','admin->categories');
+$f3->route('GET /admin/category/add','admin->addCategory');
+$f3->route('GET /admin/category/@id','admin->editCategory');
+
 
 $f3->route('POST /login','admin->login');
 $f3->route('POST /logout','admin->logout');
 
 $f3->route('POST /admin/product/add','admin->add');
+$f3->route('POST /admin/category/add','admin->addCategory');
+$f3->route('POST /admin/delete','admin->delete');
+$f3->route('POST /admin/product/edit','admin->edit');
+$f3->route('POST /admin/category/edit','admin->editCategory');
 //$f3->route('POST /admin','admin->index');
 
 

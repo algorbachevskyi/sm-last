@@ -44,18 +44,20 @@ class Admin {
         } else {
 
             $db = $f3->get('db');
+
+            // get products:
             $products=new DB\SQL\Mapper($db,'products');
-
             $productsResult = array_map(array($products,'cast'),$products->find(''));
-
             $f3->set('products',$productsResult);
+
+            // get categories:
+            $categories=new DB\SQL\Mapper($db,'categories');
+            $categoriesResult = array_map(array($categories,'cast'),$categories->find(''));
+            $f3->set('categories',$categoriesResult);
 
             echo View::instance()->render('a-header.html');
             echo View::instance()->render('a-products.html');
             echo View::instance()->render('a-footer.html');
-
-
-
 
         }
     }
@@ -65,13 +67,16 @@ class Admin {
             $f3->reroute('/login');
         } else {
 
+            $db = $f3->get('db');
+            $categories=new DB\SQL\Mapper($db,'categories');
+            $categoriesResult = array_map(array($categories,'cast'),$categories->find(''));
+            $f3->set('categories',$categoriesResult);
+
             echo View::instance()->render('a-header.html');
             echo View::instance()->render('add-product.html');
             echo View::instance()->render('a-footer.html');
 
             if (isset($_POST['add_product'])) {
-
-                $db = $f3->get('db');
 
                 $name = $_POST['name'];
                 $categoryId = $_POST['category'];
@@ -86,6 +91,8 @@ class Admin {
                 $products->price = $price;
                 $products->count = $count;
                 $products->save();
+
+                $f3->reroute('/admin/products');
 //                $db->exec('INSERT INTO products (category_id,name,about,price,count) VALUES ("',$name,')');
 
             }
@@ -96,10 +103,69 @@ class Admin {
         if ($f3->get('SESSION.user') !== 'admin') {
             $f3->reroute('/login');
         } else {
-            echo View::instance()->render('a-header.html');
-            echo View::instance()->render('edit-product.html');
-            echo View::instance()->render('a-footer.html');
 
+            $db = $f3->get('db');
+
+            if (isset($_POST['update_product'])) {
+                $name = $_POST['name'];
+                $categoryId = $_POST['category'];
+                $count = $_POST['count'];
+                $price = $_POST['price'];
+                $about = $_POST['about'];
+                $productId = $_POST['productId'];
+
+                $db->exec('UPDATE products SET category_id="'.$categoryId.'", name="'.$name.'", about="'.$about
+                    .'", price="'.$price.'", count="'.$count.'" WHERE id="'.$productId.'"');
+
+                $f3->reroute('/admin/products');
+            } else {
+
+                $products=new DB\SQL\Mapper($db,'products');
+
+                // get product:
+                $id = $f3->get('PARAMS["id"]');
+                $productsResult = array_map(array($products,'cast'),$products->find(array('id= ?',$id)));
+                $f3->set('product',$productsResult[0]);
+                $f3->set('productId',$id);
+
+                // get categories:
+                $categories=new DB\SQL\Mapper($db,'categories');
+                $categoriesResult = array_map(array($categories,'cast'),$categories->find(''));
+                $f3->set('categories',$categoriesResult);
+
+                echo View::instance()->render('a-header.html');
+                echo View::instance()->render('edit-product.html');
+                echo View::instance()->render('a-footer.html');
+            }
+        }
+    }
+
+    function delete($f3) {
+        if ($f3->get('SESSION.user') !== 'admin') {
+            $f3->reroute('/login');
+        } else {
+
+            if (isset($_POST['delete_product'])) {
+                $id = $f3->get('POST["productId"]');
+
+                $db = $f3->get('db');
+                $db->exec(
+                    'DELETE FROM products WHERE id='.$id
+                );
+
+                $f3->reroute('/admin/products');
+            } else if (isset($_POST['delete_category'])) {
+                $id = $f3->get('POST["categoryId"]');
+
+                $db = $f3->get('db');
+                $db->exec(
+                    'DELETE FROM categories WHERE id='.$id
+                );
+
+                $f3->reroute('/admin/categories');
+            } else {
+                $f3->reroute('/admin');
+            }
         }
     }
 
@@ -107,10 +173,78 @@ class Admin {
         if ($f3->get('SESSION.user') !== 'admin') {
             $f3->reroute('/login');
         } else {
+
+            $db = $f3->get('db');
+            $categories=new DB\SQL\Mapper($db,'categories');
+
+            $categoriesResult = array_map(array($categories,'cast'),$categories->find(''));
+
+            $f3->set('categories',$categoriesResult);
+
             echo View::instance()->render('a-header.html');
             echo View::instance()->render('a-categories.html');
             echo View::instance()->render('a-footer.html');
 
+        }
+    }
+
+    function addCategory($f3) {
+        if ($f3->get('SESSION.user') !== 'admin') {
+            $f3->reroute('/login');
+        } else {
+
+            echo View::instance()->render('a-header.html');
+            echo View::instance()->render('add-category.html');
+            echo View::instance()->render('a-footer.html');
+
+            if (isset($_POST['add_category'])) {
+
+                $db = $f3->get('db');
+
+                $name = $_POST['name'];
+                $about = $_POST['about'];
+
+                $products=new DB\SQL\Mapper($db,'categories');
+                $products->name = $name;
+                $products->about = $about;
+                $products->save();
+
+                $f3->reroute('/admin/categories');
+
+            }
+        }
+    }
+
+    function editCategory($f3) {
+        if ($f3->get('SESSION.user') !== 'admin') {
+            $f3->reroute('/login');
+        } else {
+
+            $db = $f3->get('db');
+
+            if (isset($_POST['update_category'])) {
+                $name = $_POST['name'];
+                $about = $_POST['about'];
+                $categoryId = $_POST['categoryId'];
+
+                $db->exec('UPDATE categories SET name="'.$name.'", about="'.$about
+                    .'" WHERE id="'.$categoryId.'"');
+
+                $f3->reroute('/admin/categories');
+            } else {
+
+                $categories=new DB\SQL\Mapper($db,'categories');
+
+                // get product:
+                $id = $f3->get('PARAMS["id"]');
+                $categoryResult = array_map(array($categories,'cast'),$categories->find(array('id= ?',$id)));
+                $f3->set('category',$categoryResult[0]);
+                $f3->set('categoryId',$id);
+
+                echo View::instance()->render('a-header.html');
+                echo View::instance()->render('edit-category.html');
+                echo View::instance()->render('a-footer.html');
+            }
         }
     }
 
