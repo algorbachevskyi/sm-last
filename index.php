@@ -40,6 +40,7 @@ $f3->route('POST /admin/delete','admin->delete');
 $f3->route('POST /admin/product/edit','admin->edit');
 $f3->route('POST /admin/category/edit','admin->editCategory');
 $f3->route('POST /upload','admin->upload');
+$f3->route('POST /removefile','admin->removeFile');
 //$f3->route('POST /admin','admin->index');
 
 

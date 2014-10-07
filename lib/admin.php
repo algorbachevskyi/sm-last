@@ -132,6 +132,19 @@ class Admin {
                 $db->exec('UPDATE products SET category_id="'.$categoryId.'", name="'.$name.'", about="'.$about
                     .'", price="'.$price.'", count="'.$count.'" WHERE id="'.$productId.'"');
 
+                $images = $_POST['product-files'];
+
+                if ($images !== '') {
+                    $images = explode(",",$images);
+
+                    foreach ($images as $image) {
+                        $pictures=new DB\SQL\Mapper($db,'pictures');
+                        $pictures->product_id = $productId;
+                        $pictures->url = $image;
+                        $pictures->save();
+                    }
+                }
+
                 $f3->reroute('/admin/products');
             } else {
 
@@ -147,6 +160,10 @@ class Admin {
                 $categories=new DB\SQL\Mapper($db,'categories');
                 $categoriesResult = array_map(array($categories,'cast'),$categories->find(''));
                 $f3->set('categories',$categoriesResult);
+
+                $pictures=new DB\SQL\Mapper($db,'pictures');
+                $picturesResult = array_map(array($pictures,'cast'),$pictures->find(array('product_id= ?',$id)));
+                $f3->set('pictures',$picturesResult);
 
                 echo View::instance()->render('a-header.html');
                 echo View::instance()->render('edit-product.html');
@@ -265,7 +282,6 @@ class Admin {
 
     function upload($f3) {
         $ds = '/';  //1
-
         $storeFolder = 'products_imgs';   //2
 
         if (!empty($_FILES)) {
@@ -279,6 +295,30 @@ class Admin {
             move_uploaded_file($tempFile,$targetFile); //6
 
         }
+    }
+
+    function removeFile($f3) {
+
+        if (!empty($_POST)) {
+            $ds = '/';
+            $storeFolder = 'products_imgs';
+            $targetFile = dirname( __DIR__) . $ds. 'ui'. $ds. $storeFolder . $ds. $_POST['deleted_file'];
+
+            // delete file from disk
+            unlink($targetFile);
+
+            // delete file from db
+                $id = $_POST['deleted_file_id'];
+
+                $db = $f3->get('db');
+                $db->exec(
+                    'DELETE FROM pictures WHERE id='.$id
+                );
+
+                $f3->reroute('/admin/product/'.$_POST['product_id']);
+
+        }
+
     }
 
     function logout($f3) {
