@@ -6,6 +6,44 @@ body {
     overflow-x: hidden;
 }
 
+a {
+    color: #0359A3;
+}
+.navbar-static-top {
+    background-color: #222;
+    border-color: #080808;
+}
+
+.navbar-brand:hover {
+    color: #fff !important;
+    -webkit-transition: color 400ms ease-in-out;
+    -moz-transition: color 400ms ease-in-out;
+    -o-transition: color 400ms ease-in-out;
+    transition: color 400ms ease-in-out;
+}
+
+.dropdown-profile {
+    color: #777;
+}
+
+.dropdown-profile:hover, .dropdown-profile:focus {
+    background-color: #4e4e4e !important;
+    color: #fff;
+}
+
+/* Bootstrap styles */
+
+.panel-blue {
+    border-color: #ddd;
+}
+
+.panel-blue > .panel-heading {
+    border-color: #0359A3;
+    background-color: #0359A3;
+    color: #fff;
+
+}
+
 /* LOGIN FORM */
 
 .login-form {

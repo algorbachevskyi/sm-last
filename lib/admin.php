@@ -39,6 +39,7 @@ class Admin {
     }
 
     function products($f3) {
+        var_dump(dirname( __DIR__));
         if ($f3->get('SESSION.user') !== 'admin') {
             $f3->reroute('/login');
         } else {
@@ -245,6 +246,24 @@ class Admin {
                 echo View::instance()->render('edit-category.html');
                 echo View::instance()->render('a-footer.html');
             }
+        }
+    }
+
+    function upload($f3) {
+        $ds = '/';  //1
+
+        $storeFolder = 'uploads';   //2
+
+        if (!empty($_FILES)) {
+
+            $tempFile = $_FILES['file']['tmp_name'];          //3
+
+            $targetPath = dirname( __DIR__) . $ds. 'ui'. $ds. $storeFolder . $ds;  //4
+
+            $targetFile =  $targetPath. $_FILES['file']['name'];  //5
+
+            move_uploaded_file($tempFile,$targetFile); //6
+
         }
     }
 
