@@ -132,3 +132,7 @@ ul.pictures li {
     display: inline-block;
     padding-left: 10px;
 }
+
+.fa.fa-times {
+    cursor: pointer;
+}

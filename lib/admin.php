@@ -53,7 +53,12 @@ class Admin {
             // get categories:
             $categories=new DB\SQL\Mapper($db,'categories');
             $categoriesResult = array_map(array($categories,'cast'),$categories->find(''));
-            $f3->set('categories',$categoriesResult);
+
+            foreach ($categoriesResult as $category) {
+                $categs[$category['id']] = $category['name'];
+            }
+
+            $f3->set('categories',$categs);
 
             echo View::instance()->render('a-header.html');
             echo View::instance()->render('a-products.html');

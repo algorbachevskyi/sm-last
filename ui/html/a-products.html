@@ -34,7 +34,7 @@
     <td><a style="text-decoration: none;"><?= $product['name'] ?></a></td>
     <td class="text-center"><?= $product['count'] ?></td>
     <td class="text-center"><?= $product['price'] ?></td>
-    <td class="text-center"><?= $product['category_id'] ?></td>
+    <td class="text-center"><?= $categories[$product['category_id']] ?></td>
     <td class="text-center"><?= $product['about'] ?></td>
     <td> <a href="/admin/product/<?= $product['id'] ?>"><i class="fa fa-pencil text-primary text-center"></i></a> </td>
     <td> <a onclick="$('#form-delete-<?= $product['id'] ?>').submit();"> <i class="fa fa-times text-danger text-center"></i></a>
