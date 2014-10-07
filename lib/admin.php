@@ -39,7 +39,6 @@ class Admin {
     }
 
     function products($f3) {
-        var_dump(dirname( __DIR__));
         if ($f3->get('SESSION.user') !== 'admin') {
             $f3->reroute('/login');
         } else {
@@ -85,6 +84,8 @@ class Admin {
                 $price = $_POST['price'];
                 $about = $_POST['about'];
 
+                $images = $_POST['product-files'];
+
                 $products=new DB\SQL\Mapper($db,'products');
                 $products->name = $name;
                 $products->category_id = $categoryId;
@@ -92,6 +93,19 @@ class Admin {
                 $products->price = $price;
                 $products->count = $count;
                 $products->save();
+
+                if ($images !== '') {
+
+                    $images = explode(",",$images);
+
+                    foreach ($images as $image) {
+                        $pictures=new DB\SQL\Mapper($db,'pictures');
+                        $pictures->product_id = $products->id;
+                        $pictures->url = $image;
+                        $pictures->save();
+                    }
+
+                }
 
                 $f3->reroute('/admin/products');
 //                $db->exec('INSERT INTO products (category_id,name,about,price,count) VALUES ("',$name,')');
@@ -252,7 +266,7 @@ class Admin {
     function upload($f3) {
         $ds = '/';  //1
 
-        $storeFolder = 'uploads';   //2
+        $storeFolder = 'products_imgs';   //2
 
         if (!empty($_FILES)) {
 

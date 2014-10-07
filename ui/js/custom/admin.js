@@ -8,6 +8,58 @@ $(function() {
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
 $(function() {
+
+    // errors hendler:
+//    var productValidator = new FormValidator('product-form', [
+//    {
+//        name: 'name',
+//        display: 'Назва',
+//        rules: 'required'
+//    }, {
+//        name: 'count',
+//        display: 'Кількість',
+//        rules: 'is_natural_no_zero'
+//    }, {
+//        name: 'price',
+//        display: 'Ціна',
+//        rules: 'is_natural_no_zero'
+//    }, {
+//        name: 'about',
+//        display: 'Опис',
+//        rules: 'required'
+//    }], function(errors, event) {
+//        if (errors.length > 0) {
+//            for (var i=0; i<errors.length; i++) {
+//                $('#' + errors[i].id).parent().addClass('has-error');
+//            }
+//        }
+//    });
+//
+
+    $('.form-group').on('click',function(){
+        var errorClass = ' has-error';
+        this.className = this.className.replace(errorClass,"");
+    });
+
+    $("#count").keypress(function (e) {
+        $("#count").parent().removeClass('has-error');
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            //display error message
+            $("#count").parent().addClass('has-error');
+            return false;
+        }
+    });
+
+    $("#price").keypress(function (e) {
+        $("#price").parent().removeClass('has-error');
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            //display error message
+            $("#price").parent().addClass('has-error');
+            return false;
+        }
+    });
+
+    // configs:
     $(window).bind("load resize", function() {
         topOffset = 50;
         width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
@@ -26,24 +78,35 @@ $(function() {
         }
     });
 
+    // file upload (dropzone):
     Dropzone.options.myAwesomeDropzone = {
-        maxFilesize: 1,
+        maxFilesize: 2,
         maxFiles: 6,
         parallelUploads: 6,
         acceptedFiles: 'image/*',
         autoProcessQueue: false,
         addRemoveLinks: 'dictRemoveFile',
         dictInvalidFileType : 'Файл повинен бути зображенням!',
-        dictFileTooBig : 'Зображення завелике (максимум 1 MB)',
+        dictFileTooBig : 'Зображення завелике (максимум 2 MB)',
         init: function() {
             var submitButton = $("#submit-product");
-            var
             myDropzone = this; // closure
 
             submitButton.on("click", function() {
-//                event.preventDefault();
-                myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+                event.preventDefault();
+                if (validProductForm()) {
+                    if (myDropzone.getQueuedFiles().length === 0) {
+                        $('#product').submit();
+                    } else {
+                        var files = [];
+                        for (var i=0; i<myDropzone.getQueuedFiles().length; i++) {
+                            files.push(myDropzone.getQueuedFiles()[i].name);
+                        }
 
+                        $('#product-files').val(files);
+                        myDropzone.processQueue();
+                    }
+                }
             });
 
             // You might want to show the submit button only when
@@ -60,5 +123,16 @@ $(function() {
 
         }
     };
+
+    var validProductForm = function() {
+
+        if($('#name').val() !== '' &&
+            $('#count').val() !== '' &&
+            $('#price').val() !== '' &&
+            $('#about').val() !== ''
+            ) return true;
+
+        return false;
+    }
 
 });
