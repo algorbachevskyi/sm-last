@@ -17,7 +17,7 @@
 <table class="table table-striped table-hover" id="dataTables-products">
 <thead>
 <tr>
-    <th>No</th>
+    <th>Код</th>
     <th>Назва</th>
     <th>Кількість</th>
     <th>Ціна</th>
@@ -30,7 +30,7 @@
 <tbody>
 <?php foreach($products as $product): ?>
 <tr>
-    <td class="text-right"><?= $product['id'] ?></td>
+    <td class="text-right">SM-<?= $product['id'] ?></td>
     <td><a style="text-decoration: none;"><?= $product['name'] ?></a></td>
     <td class="text-center"><?= $product['count'] ?></td>
     <td class="text-center"><?= $product['price'] ?></td>

@@ -216,6 +216,27 @@ class Admin {
                 $id = $f3->get('POST["productId"]');
 
                 $db = $f3->get('db');
+
+                // get pictures per product:
+                $productPictures = $db->exec('SELECT * FROM pictures WHERE product_id="'.$id.'"');
+
+                //delete all product pictures from disk:
+                $ds = '/';
+                $storeFolder = 'products_imgs';
+                foreach($productPictures as $picture) {
+
+                    $targetFile = dirname( __DIR__) . $ds. 'ui'. $ds. $storeFolder . $ds. $picture['url'];
+
+                    // delete from disk
+                    unlink($targetFile);
+
+                    // delete from db
+                    $db->exec(
+                        'DELETE FROM pictures WHERE id="'.$picture['id'].'"'
+                    );
+                }
+
+                // delete product from db:
                 $db->exec(
                     'DELETE FROM products WHERE id='.$id
                 );
