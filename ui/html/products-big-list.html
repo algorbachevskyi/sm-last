@@ -92,7 +92,9 @@
                                     <p><?= $product['price']?>.00 грн</p>
                                     <p><?php echo $product['count'] == 0 ? '<i class="text-muted">Відсутній в продажі</i>' : 'В наявності'?></p>
                                 </div>
-                                <div class="product-item-badge">Радимо!</div>
+                                <?php if($product['recomended'] == 1):?>
+                                    <div class="product-item-badge">Радимо!</div>
+                                <?php endif;?>
                             </div>
                         </div>
                     <?php endforeach;?>

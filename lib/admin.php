@@ -109,7 +109,7 @@ class Admin {
                 $count = $_POST['count'];
                 $price = $_POST['price'];
                 $about = $_POST['about'];
-                $recomended = $_POST['recomended'] == 1 ? $_POST['recomended'] : 0;
+                $recomended = isset($_POST['recomended']) ? $_POST['recomended'] : 0;
 
                 $images = $_POST['product-files'];
 
@@ -156,7 +156,7 @@ class Admin {
                 $price = $_POST['price'];
                 $about = $_POST['about'];
                 $productId = $_POST['productId'];
-                $recomended = $_POST['recomended'] == 1 ? $_POST['recomended'] : 0;
+                $recomended = isset($_POST['recomended']) ? $_POST['recomended'] : 0;
 
                 $db->exec('UPDATE products SET category_id="'.$categoryId.'", name="'.$name.'", about="'.$about
                     .'", price="'.$price.'", count="'.$count.'", recomended="'.$recomended.'" WHERE id="'.$productId.'"');
