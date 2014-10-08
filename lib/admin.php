@@ -108,7 +108,9 @@ class Admin {
                 $categoryId = $_POST['category'];
                 $count = $_POST['count'];
                 $price = $_POST['price'];
+                $data = $_POST['data'];
                 $about = $_POST['about'];
+                $warranty = $_POST['warranty'];
                 $recomended = isset($_POST['recomended']) ? $_POST['recomended'] : 0;
 
                 $images = $_POST['product-files'];
@@ -116,7 +118,9 @@ class Admin {
                 $products=new DB\SQL\Mapper($db,'products');
                 $products->name = $name;
                 $products->category_id = $categoryId;
+                $products->data = $data;
                 $products->about = $about;
+                $products->warranty = $warranty;
                 $products->price = $price;
                 $products->count = $count;
                 $products->recomended = $recomended;
@@ -154,11 +158,13 @@ class Admin {
                 $categoryId = $_POST['category'];
                 $count = $_POST['count'];
                 $price = $_POST['price'];
+                $data = $_POST['data'];
                 $about = $_POST['about'];
+                $warranty = $_POST['warranty'];
                 $productId = $_POST['productId'];
                 $recomended = isset($_POST['recomended']) ? $_POST['recomended'] : 0;
 
-                $db->exec('UPDATE products SET category_id="'.$categoryId.'", name="'.$name.'", about="'.$about
+                $db->exec('UPDATE products SET category_id="'.$categoryId.'", name="'.$name.'", about="'.$about.'", data="'.$data.'", warranty="'.$warranty
                     .'", price="'.$price.'", count="'.$count.'", recomended="'.$recomended.'" WHERE id="'.$productId.'"');
 
                 $images = $_POST['product-files'];
