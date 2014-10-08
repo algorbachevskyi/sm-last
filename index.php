@@ -17,6 +17,7 @@ $f3->config('config.ini');
 
 $f3->route('GET /','main->index');
 $f3->route('GET /products','main->products');
+$f3->route('GET /product/@id','main->product');
 $f3->route('GET /about','main->about');
 $f3->route('GET /contacts','main->contacts');
 $f3->route('GET /delivery','main->delivery');

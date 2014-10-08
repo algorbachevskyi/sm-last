@@ -6,22 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="description" content="responsive clothing store template">
     <meta name="author" content="afriq yasin ramadhan">
-    <link rel="shortcut icon" href="ui/img/favicon.png">
+    <link rel="shortcut icon" href="../ui/img/favicon.png">
 
     <title>Sunmarket</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="ui/css/bootstrap.css" rel="stylesheet">
+    <link href="../ui/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="ui/css/style.css" rel="stylesheet">
-    <link href="ui/css/responsive.css" rel="stylesheet">
-    <link href="ui/css/custom.css" rel="stylesheet">
+    <link href="../ui/css/style.css" rel="stylesheet">
+    <link href="../ui/css/responsive.css" rel="stylesheet">
+    <link href="../ui/css/custom.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="ui/js/lib/html5shiv.js"></script>
-    <script src="ui/js/lib/respond.min.js"></script>
+    <script src="../ui/js/lib/html5shiv.js"></script>
+    <script src="../ui/js/lib/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -187,7 +187,7 @@
                     <li class="<?= $activeMenu == 'main' ? 'active' : '' ?>"><a href="/">Головна</a></li>
 
                     <li class="dropdown <?= $activeMenu == 'products' ? 'active' : '' ?>" >
-                        <a href="/products" data-toggle="dropdown" class="dropdown-toggle">Каталог товарів <b class="caret"></b></a>
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Каталог товарів <b class="caret"></b></a>
                         <ul class="dropdown-menu" id="menu1">
                             <?php foreach($categories as $id=>$name):?>
                                 <li><a href="/products?cat=<?= $id ?>"><?=$name?></a></li>

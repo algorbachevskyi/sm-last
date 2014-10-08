@@ -12,7 +12,7 @@
     <?php foreach($products as $product):?>
         <div class="col-md-3 col-sm-3 col-xs-6">
             <div class="thumbnail product-item">
-                <a href="product_detail.html"><img alt="" src="<?php echo count($product['images']) == 0 ? 'ui/img/product1.jpg' : 'ui/products_imgs/'.$product['images'][0]['url']; ?>"></a>
+                <a href="/product/<?= $product['id']?>"><img alt="" src="<?php echo count($product['images']) == 0 ? 'ui/img/product1.jpg' : 'ui/products_imgs/'.$product['images'][0]['url']; ?>"></a>
                 <div class="caption">
                     <h5><?= $product['name']?></h5>
                     <p><?= $product['price']?>.00 грн</p>
