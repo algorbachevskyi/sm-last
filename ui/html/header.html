@@ -184,30 +184,22 @@
         <div class="col-md-12">
             <div class="nav-menus">
                 <ul class="nav nav-pills">
-                    <li class="active"><a href="/">Головна</a></li>
+                    <li class="<?= $activeMenu == 'main' ? 'active' : '' ?>"><a href="/">Головна</a></li>
 
-                    <li class="dropdown">
+                    <li class="dropdown <?= $activeMenu == 'products' ? 'active' : '' ?>" >
                         <a href="/products" data-toggle="dropdown" class="dropdown-toggle">Каталог товарів <b class="caret"></b></a>
                         <ul class="dropdown-menu" id="menu1">
-                            <li>
-                                <a href="/products">Батареї <b class="caret"></b></a>
-                                <ul class="dropdown-menu sub-menu">
-                                    <li><a href="/products">Сонячні</a></li>
-                                    <li><a href="/products">Комплектуючі</a></li>
-                                    <li><a href="/products">Підвищеної продуктивності</a></li>
-                                    <li><a href="/products">Зелені</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="/products">Станції</a></li>
-                            <li><a href="/products">Акумулятори</a></li>
+                            <?php foreach($categories as $id=>$name):?>
+                                <li><a href="/products?cat=<?= $id ?>"><?=$name?></a></li>
+                            <?php endforeach;?>
                             <li class="divider"></li>
-                            <li><a href="/products">Різне</a></li>
+                            <li><a href="/products">Всі товари</a></li>
                         </ul>
                     </li>
 
-                    <li><a href="/about">Про нас</a></li>
-                    <li><a href="/contacts">Контакти</a></li>
-                    <li><a href="/delivery">Оплата та доставка</a></li>
+                    <li class="<?= $activeMenu == 'about' ? 'active' : '' ?>"><a href="/about">Про нас</a></li>
+                    <li class="<?= $activeMenu == 'contacts' ? 'active' : '' ?>"><a href="/contacts">Контакти</a></li>
+                    <li class="<?= $activeMenu == 'delivery' ? 'active' : '' ?>"><a href="/delivery">Оплата та доставка</a></li>
                 </ul>
             </div>
         </div>

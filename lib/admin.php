@@ -7,6 +7,27 @@ class Admin {
         if ($f3->get('SESSION.user') !== 'admin') {
             $f3->reroute('/login');
         } else {
+
+            $db = $f3->get('db');
+
+            // get products:
+            $products=new DB\SQL\Mapper($db,'products');
+            $productsResult = array_map(array($products,'cast'),$products->find(''));
+            $f3->set('products',$productsResult);
+
+            // get categories:
+            $categories=new DB\SQL\Mapper($db,'categories');
+            $categoriesResult = array_map(array($categories,'cast'),$categories->find(''));
+            foreach ($categoriesResult as $category) {
+                $categs[$category['id']] = $category['name'];
+            }
+            $f3->set('categories',$categs);
+
+            // get orders:
+            $products=new DB\SQL\Mapper($db,'orders');
+            $productsResult = array_map(array($products,'cast'),$products->find(''));
+            $f3->set('products',$productsResult);
+
             echo View::instance()->render('a-header.html');
             echo View::instance()->render('admin.html');
             echo View::instance()->render('a-footer.html');
@@ -88,6 +109,7 @@ class Admin {
                 $count = $_POST['count'];
                 $price = $_POST['price'];
                 $about = $_POST['about'];
+                $recomended = $_POST['recomended'] == 1 ? $_POST['recomended'] : 0;
 
                 $images = $_POST['product-files'];
 
@@ -97,6 +119,7 @@ class Admin {
                 $products->about = $about;
                 $products->price = $price;
                 $products->count = $count;
+                $products->recomended = $recomended;
                 $products->save();
 
                 if ($images !== '') {
@@ -133,9 +156,10 @@ class Admin {
                 $price = $_POST['price'];
                 $about = $_POST['about'];
                 $productId = $_POST['productId'];
+                $recomended = $_POST['recomended'] == 1 ? $_POST['recomended'] : 0;
 
                 $db->exec('UPDATE products SET category_id="'.$categoryId.'", name="'.$name.'", about="'.$about
-                    .'", price="'.$price.'", count="'.$count.'" WHERE id="'.$productId.'"');
+                    .'", price="'.$price.'", count="'.$count.'", recomended="'.$recomended.'" WHERE id="'.$productId.'"');
 
                 $images = $_POST['product-files'];
 

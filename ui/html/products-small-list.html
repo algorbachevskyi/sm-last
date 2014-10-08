@@ -8,51 +8,53 @@
 </div>
 
 <div class="row product-container">
-
-    <div class="col-md-3 col-sm-3 col-xs-6">
-        <div class="thumbnail product-item">
-            <a href="product_detail.html"><img alt="" src="img/product1.jpg"></a>
-            <div class="caption">
-                <h5>Сонячна батарея STP-100W/12V</h5>
-                <p>1200.00 грн</p>
-                <p>В наявності</p>
-            </div>
-            <div class="product-item-badge">Новинка</div>
-        </div>
-    </div>
-
-    <div class="col-md-3 col-sm-3 col-xs-6">
-        <div class="thumbnail product-item">
-            <a href="product_detail.html"><img alt="" src="img/product1.jpg"></a>
-            <div class="caption">
-                <h5>Сонячна батарея STP-100W/12V</h5>
-                <p>1200.00 грн</p>
-                <p>В наявності</p>
+    <!--<?php var_dump($products);?>-->
+    <?php foreach($products as $product):?>
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="thumbnail product-item">
+                <a href="product_detail.html"><img alt="" src="<?php echo count($product['images']) == 0 ? 'ui/img/product1.jpg' : 'ui/products_imgs/'.$product['images'][0]['url']; ?>"></a>
+                <div class="caption">
+                    <h5><?= $product['name']?></h5>
+                    <p><?= $product['price']?>.00 грн</p>
+                    <p><?php echo $product['count'] == 0 ? '<i class="text-muted">Відсутній в продажі</i>' : 'В наявності'?></p>
+                </div>
+                <div class="product-item-badge">Радимо!</div>
             </div>
         </div>
-    </div>
+    <?php endforeach; ?>
 
-    <div class="col-md-3 col-sm-3 col-xs-6">
-        <div class="thumbnail product-item">
-            <a href="product_detail.html"><img alt="" src="img/product1.jpg"></a>
-            <div class="caption">
-                <h5>Сонячна батарея STP-100W/12V</h5>
-                <p>1200.00 грн</p>
-                <p>В наявності</p>
-            </div>
-            <div class="product-item-badge badge-sale">Розпродаж</div>
-        </div>
-    </div>
+    <!--<div class="col-md-3 col-sm-3 col-xs-6">-->
+        <!--<div class="thumbnail product-item">-->
+            <!--<a href="product_detail.html"><img alt="" src="img/product1.jpg"></a>-->
+            <!--<div class="caption">-->
+                <!--<h5>Сонячна батарея STP-100W/12V</h5>-->
+                <!--<p>1200.00 грн</p>-->
+                <!--<p>В наявності</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
-    <div class="col-md-3 col-sm-3 col-xs-6">
-        <div class="thumbnail product-item">
-            <a href="product_detail.html"><img alt="" src="img/product1.jpg"></a>
-            <div class="caption">
-                <h5>Сонячна батарея STP-100W/12V</h5>
-                <p>1200.00 грн</p>
-                <p>В наявності</p>
-            </div>
-        </div>
-    </div>
+    <!--<div class="col-md-3 col-sm-3 col-xs-6">-->
+        <!--<div class="thumbnail product-item">-->
+            <!--<a href="product_detail.html"><img alt="" src="img/product1.jpg"></a>-->
+            <!--<div class="caption">-->
+                <!--<h5>Сонячна батарея STP-100W/12V</h5>-->
+                <!--<p>1200.00 грн</p>-->
+                <!--<p>В наявності</p>-->
+            <!--</div>-->
+            <!--<div class="product-item-badge badge-sale">Розпродаж</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="col-md-3 col-sm-3 col-xs-6">-->
+        <!--<div class="thumbnail product-item">-->
+            <!--<a href="product_detail.html"><img alt="" src="img/product1.jpg"></a>-->
+            <!--<div class="caption">-->
+                <!--<h5>Сонячна батарея STP-100W/12V</h5>-->
+                <!--<p>1200.00 грн</p>-->
+                <!--<p>В наявності</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 </div>
 <!-- end:best-seller -->

@@ -41,7 +41,15 @@ a {
     border-color: #0359A3;
     background-color: #0359A3;
     color: #fff;
+}
 
+.panel-light-blue {
+    border-color: #ddd;
+}
+.panel-light-blue > .panel-heading {
+    border-color: #036cc4;
+    background-color: #428bca;
+    color: #fff;
 }
 
 /* LOGIN FORM */
@@ -135,4 +143,8 @@ ul.pictures li {
 
 .fa.fa-times {
     cursor: pointer;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: rgba(238, 255, 134, 0.25);
 }

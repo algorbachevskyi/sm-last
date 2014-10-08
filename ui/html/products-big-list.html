@@ -1,0 +1,123 @@
+<!-- begin:article -->
+<div class="row">
+    <!-- begin:sidebar -->
+    <div class="col-md-3 col-sm-4 sidebar">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget">
+                    <div class="widget-title">
+                        <h3>Кошик</h3>
+                    </div>
+                    <ul class="cart list-unstyled">
+                        <li>
+                            <div class="row">
+                                <div class="col-sm-7 col-xs-7">1 <a href="product_detail.html">Сонячна панель</a></div>
+                                <div class="col-sm-5 col-xs-5 text-right"><strong>2600 грн</strong> <a href="#"><i class="fa fa-trash-o"></i></a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="col-sm-7 col-xs-7">3 <a href="product_detail.html">Кріплення кронштейн</a></div>
+                                <div class="col-sm-5 col-sm-5 text-right"><strong>300 грн</strong> <a href="#"><i class="fa fa-trash-o"></i></a></div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled total-price">
+                        <li>
+                            <div class="row">
+                                <div class="col-sm-8 col-xs-8">Загальна сума</div>
+                                <div class="col-sm-4 col-xs-4 text-right">3500 грн</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6">
+                                    <a class="btn btn-default" href="#">До кошика</a>
+                                </div>
+                                <div class="col-sm-6 col-xs-6 text-right">
+                                    <a class="btn btn-primary" href="#">Оформити</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- break -->
+                <div class="widget">
+                    <div class="widget-title">
+                        <h3>Категорії</h3>
+                    </div>
+                    <ul class="nav nav-pills nav-stacked">
+                        <?php foreach($categories as $id=>$name):?>
+                            <li class="<?= $activeCategory == $id ? 'active' : '' ?>"><a href="/products?cat=<?= $id?>"><?=$name?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <!-- break -->
+                <div class="widget">
+                    <div class="widget-title">
+                        <h3>Допомога</h3>
+                    </div>
+                    <p>Потрібна консультація? Напишіть нам <a href="contact.html">листа</a> і ми обов'язково зв'яжемося з Вами!</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- end:sidebar -->
+
+    <!-- begin:content -->
+    <div class="col-md-9 col-sm-8 content">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="/">Головна </a></li>
+                    <li><a href="#"><?= $activeCategory == 0 ? 'Каталог' : $categories[$activeCategory] ?></a></li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3><?= $activeCategory == 0 ? 'Каталог' : $categories[$activeCategory] ?></h3>
+                <hr />
+                <h3 class="col-md-12 text-center <?= count($products) == 0 ? '' : 'hidden'?>">Товар в категорії "<?= $activeCategory == 0 ? 'Каталог' : $categories[$activeCategory] ?>" відсутній</h3>
+
+                <!-- begind:item -->
+                <div class="row product-container">
+                    <?php foreach($products as $product):?>
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="thumbnail product-item">
+                                <a href="product_detail.html"><img alt="" src="<?php echo count($product['images']) == 0 ? 'ui/img/product1.jpg' : 'ui/products_imgs/'.$product['images'][0]['url']; ?>"></a>
+                                <div class="caption">
+                                    <h5><?= $product['name']?></h5>
+                                    <p><?= $product['price']?>.00 грн</p>
+                                    <p><?php echo $product['count'] == 0 ? '<i class="text-muted">Відсутній в продажі</i>' : 'В наявності'?></p>
+                                </div>
+                                <div class="product-item-badge">Радимо!</div>
+                            </div>
+                        </div>
+                    <?php endforeach;?>
+
+                    <!-- end:item -->
+
+
+                </div>
+                <!-- begin:pagination -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="pagination">
+                            <li class="disabled"><a href="#">&lsaquo;</a></li>
+                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&rsaquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- end:pagination -->
+            </div>
+        </div>
+        <!-- end:content -->
+    </div>
+    <!-- end:article -->
