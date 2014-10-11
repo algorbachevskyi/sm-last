@@ -32,10 +32,10 @@
                     <li>
                         <div class="row">
                             <div class="col-sm-6 col-xs-6">
-                                <a class="btn btn-default" href="#">До кошика</a>
+                                <a class="btn btn-default" href="/cart">До кошика</a>
                             </div>
                             <div class="col-sm-6 col-xs-6 text-right">
-                                <a class="btn btn-primary" href="#">Оформити</a>
+                                <a class="btn btn-primary" href="/order">Оформити</a>
                             </div>
                         </div>
                     </li>
@@ -144,7 +144,7 @@
                         <td><strong>Кількість</strong></td>
                         <td>:</td>
                         <td>
-                            <select class="form-control">
+                            <select class="form-control" id="count-select" onchange="productData.amount = this.value">
                                 <?php for ($i = 1; $i <= $product['count']; $i++):?>
                                     <option value="<?= $i ?>"><?= $i ?></option>
                                 <?php endfor;?>
@@ -152,9 +152,9 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr class="<?= $product['count'] == 0 ? hidden : ''?>">
                         <td colspan="3">
-                            <a href="#" class="btn btn-sm btn-primary">+ в кошик</a>
+                            <a  id="to-basket" onclick="!productInBasket(prodId) ? saveToBasket(productData) : ''" class="btn btn-sm">+ в кошик</a>
                         </td>
                     </tr>
                     </tbody>
@@ -226,3 +226,28 @@
 <!-- end:content -->
 </div>
 <!-- end:article -->
+<script>
+    productData = {
+        id : '<?= $product["id"]?>',
+        name : '<?= $product["name"]?>',
+        amount : $('#count-select').val(),
+        price : '<?= $product["price"]?>',
+        count : '<?= $product["count"]?>',
+        category : '<?= $product["category_name"]?>',
+        data : '<?= $product["data"]?>',
+        about : '<?= $product["about"]?>',
+        warranty : '<?= $product["warranty"]?>',
+        recomended : '<?= $product["recomended"]?>',
+        url : '<?= $product["images"][0]["url"]?>'
+    };
+
+    prodId = <?= $product['id']?>;
+
+    if (productInBasket(prodId)) {
+        $('#to-basket').html('<i class="fa fa-check"></i> товар в кошику!').addClass('btn-danger');
+    } else {
+        $('#to-basket').html('+ в кошик').addClass('btn-primary');
+    }
+
+</script>
+

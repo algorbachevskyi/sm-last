@@ -1,0 +1,79 @@
+<!-- begin:article -->
+<div class="row">
+    <!-- begin:sidebar -->
+    <div class="col-md-3 col-sm-4 sidebar">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget">
+                    <h3>Заголовок 1</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Fusce varius quam elementum metus vulputate lacinia. Class aptent taciti sociosqu ad.</p>
+                </div>
+                <!-- break -->
+                <div class="widget">
+                    <div class="widget-title">
+                        <h3>Категорії</h3>
+                    </div>
+                    <ul class="nav nav-pills nav-stacked">
+                        <?php foreach($categories as $id=>$name):?>
+                        <li><a href="/products?cat=<?= $id?>"><?=$name?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <!-- break -->
+                <div class="widget">
+                    <div class="widget-title">
+                        <h3>Допомога</h3>
+                    </div>
+                    <p>Потрібна консультація? Напишіть нам <a href="contact.html">листа</a> і ми обов'язково зв'яжемося з Вами!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end:sidebar -->
+
+    <!-- begin:content -->
+    <div class="col-md-9 col-sm-8 content">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="/">Головна</a></li>
+                    <li class="active">Кошик</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#cart" data-toggle="tab">Кошик</a></li>
+                    <li><a href="/order">Оформлення замовлення</a></li>
+                </ul>
+
+                <h3>Ваш кошик</h3>
+                <hr />
+
+                <h3 class="text-center" id="empty-cart-text"> У Вашому кошику немає жодного товару.</h3>
+                <table class="table table-bordered table-striped" id="cart-table">
+                    <thead>
+                    <tr>
+                        <th>Товар</th>
+                        <th>Опис</th>
+                        <th>Кількість</th>
+                        <th>Ціна за шт.</th>
+                        <th>Вартість</th>
+                    </tr>
+                    </thead>
+                    <tbody id="cart-table-body">
+
+                    </tbody>
+                </table>
+                <a href="/products" class="btn btn-default">До списку товарів</a>
+                <a href="/order" id="go-to-order" class="btn btn-primary pull-right">Далі</a>
+
+            </div>
+        </div>
+    </div>
+    <!-- end:content -->
+</div>
+<!-- end:article -->

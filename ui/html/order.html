@@ -1,0 +1,129 @@
+<!-- begin:article -->
+<div class="row">
+    <!-- begin:sidebar -->
+    <div class="col-md-3 col-sm-4 sidebar">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget">
+                    <h3>Заголовок 1</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Fusce varius quam elementum metus vulputate lacinia. Class aptent taciti sociosqu ad.</p>
+                </div>
+                <!-- break -->
+                <div class="widget">
+                    <div class="widget-title">
+                        <h3>Категорії</h3>
+                    </div>
+                    <ul class="nav nav-pills nav-stacked">
+                        <?php foreach($categories as $id=>$name):?>
+                        <li><a href="/products?cat=<?= $id?>"><?=$name?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <!-- break -->
+                <div class="widget">
+                    <div class="widget-title">
+                        <h3>Допомога</h3>
+                    </div>
+                    <p>Потрібна консультація? Напишіть нам <a href="contact.html">листа</a> і ми обов'язково зв'яжемося з Вами!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end:sidebar -->
+
+    <!-- begin:content -->
+    <div class="col-md-9 col-sm-8 content">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="/">Головна</a></li>
+                    <li class="active">Оформлення замовлення</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs">
+                    <li><a href="/cart">Кошик</a></li>
+                    <li class="active"><a href="">Оформлення замовлення</a></li>
+                </ul>
+
+                <h3>Форма оформлення замовлення</h3>
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-6 col-lg-6">
+                        <form id="product" name="product-form" action="/admin/product/add" method="post">
+                            <div class="form-group">
+                                <label>Ваше П.І.Б</label>
+                                <input id="name" name="name" class="form-control" placeholder="Прізвище Ім'я По-батькові" required>
+                            </div>
+
+                            <label>Контактний телефон</label>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">+38</span>
+                                <input type="tel" id="tel" name="tel" class="form-control" placeholder="XXX-XXXXXXX" required>
+                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                            </div>
+
+                            <label>E-mail</label>
+                            <div class="form-group input-group">
+                                <input type="email" id="email" name="tel" class="form-control" placeholder="xxx@xxxx.xxx" required>
+                                <span class="input-group-addon">@</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Коментар</label>
+                                <textarea id="details" name="details" class="form-control" rows="4"></textarea>
+                            </div>
+
+                            <input type="hidden" name="add_product" value="true"/>
+                            <input type="hidden" name="product-files" id="product-files" value=""/>
+
+                        </form>
+                    </div>
+
+                    <div class="col-xs-12 col-md-5 col-lg-5 sidebar pull-right">
+                        <br/>
+                        <div class="widget">
+                            <div class="widget-title" style="background-color: #ed9c28; border-color: #d58512; color: #fff">
+                                <h3>Рахунок</h3>
+                            </div>
+                            <ul class="cart list-unstyled">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-sm-7 col-xs-7">1 <a href="product_detail.html">Сонячна панель</a></div>
+                                        <div class="col-sm-5 col-xs-5 text-right"><strong>2600 грн</strong> <a href="#"><i class="fa fa-trash-o"></i></a></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row">
+                                        <div class="col-sm-7 col-xs-7">3 <a href="product_detail.html">Кріплення кронштейн</a></div>
+                                        <div class="col-sm-5 col-sm-5 text-right"><strong>300 грн</strong> <a href="#"><i class="fa fa-trash-o"></i></a></div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled total-price">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-sm-8 col-xs-8">Загальна сума</div>
+                                        <div class="col-sm-4 col-xs-4 text-right">3500 грн</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <a href="" class="btn btn-primary pull-left">Оформити замовлення</a>
+                <a href="" class="btn btn-default pull-right">Назад до кошика</a>
+
+            </div>
+        </div>
+    </div>
+    <!-- end:content -->
+</div>
+<!-- end:article -->

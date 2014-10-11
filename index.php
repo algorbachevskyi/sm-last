@@ -21,6 +21,8 @@ $f3->route('GET /product/@id','main->product');
 $f3->route('GET /about','main->about');
 $f3->route('GET /contacts','main->contacts');
 $f3->route('GET /delivery','main->delivery');
+$f3->route('GET /cart','main->cart');
+$f3->route('GET /order','main->order');
 
 $f3->route('GET /login','admin->login');
 $f3->route('GET /admin','admin->index');

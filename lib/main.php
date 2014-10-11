@@ -162,4 +162,36 @@ class Main {
         echo View::instance()->render('footer.html');
 
     }
+
+    function cart($f3) {
+
+        $db = $f3->get('db');
+
+//         get categories:
+        $categoriesResult = $db->exec('SELECT * FROM categories');
+        foreach ($categoriesResult as $category) { $categs[$category['id']] = $category['name']; }
+        $f3->set('categories',$categs);
+        $f3->set('activeMenu','');
+
+        echo View::instance()->render('header.html');
+        echo View::instance()->render('cart.html');
+        echo View::instance()->render('footer.html');
+
+    }
+
+    function order($f3) {
+
+        $db = $f3->get('db');
+
+//         get categories:
+        $categoriesResult = $db->exec('SELECT * FROM categories');
+        foreach ($categoriesResult as $category) { $categs[$category['id']] = $category['name']; }
+        $f3->set('categories',$categs);
+        $f3->set('activeMenu','');
+
+        echo View::instance()->render('header.html');
+        echo View::instance()->render('order.html');
+        echo View::instance()->render('footer.html');
+
+    }
 }

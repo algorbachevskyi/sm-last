@@ -60,3 +60,22 @@
     border-right: none !important;
 }
 
+/* Notifications styles: */
+
+.ui-pnotify .alert-success {
+    color: #fff;
+    background-color: #50B40E;
+    border-color: #50B40E;
+}
+
+.ui-pnotify .alert-warning {
+    color: #fff;
+    background-color: #c83700;
+    border-color: #b43500;
+}
+
+/* Cart styles: */
+
+#cart-table, #empty-cart-text {
+    display: none;
+}

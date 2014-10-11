@@ -17,7 +17,20 @@
     <link href="../ui/css/style.css" rel="stylesheet">
     <link href="../ui/css/responsive.css" rel="stylesheet">
     <link href="../ui/css/custom.css" rel="stylesheet">
+    <link href="../ui/js/plugins/pnotify/pnotify.custom.min.css" rel="stylesheet">
 
+
+    <script src="../ui/js/lib/jquery.js"></script>
+    <script src="../ui/js/lib/bootstrap.min.js"></script>
+    <script src="../ui/js/lib/masonry.pkgd.min.js"></script>
+    <script src="../ui/js/lib/imagesloaded.pkgd.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script src="../ui/js/lib/jstorage.js"></script>
+    <script src="../ui/js/plugins/pnotify/pnotify.custom.min.js"></script>
+
+    <script src="../ui/js/lib/script.js"></script>
+    <script src="../ui/js/custom/cart.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="../ui/js/lib/html5shiv.js"></script>
@@ -166,8 +179,8 @@
                 <ul>
                     <li>
                         <div class="hidden-xs">
-                            <h4><a href="#">Кошик</a></h4>
-                            <p><strong>2 Продукт(а)</strong></p>
+                            <h4><a href="/cart">Кошик</a></h4>
+                            <p><strong>Всередині: <span id="product-count"></span></strong></p>
                         </div>
                         <div class="visible-xs">
                             <a href="#" class="btn btn-primary"><span class="cart-item">2</span> <i class="fa fa-shopping-cart"></i></a>
@@ -200,6 +213,7 @@
                     <li class="<?= $activeMenu == 'about' ? 'active' : '' ?>"><a href="/about">Про нас</a></li>
                     <li class="<?= $activeMenu == 'contacts' ? 'active' : '' ?>"><a href="/contacts">Контакти</a></li>
                     <li class="<?= $activeMenu == 'delivery' ? 'active' : '' ?>"><a href="/delivery">Оплата та доставка</a></li>
+                    <li class="<?= $activeMenu == 'faq' ? 'active' : '' ?>"><a href="/delivery">FAQ</a></li>
                 </ul>
             </div>
         </div>
