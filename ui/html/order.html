@@ -1,3 +1,5 @@
+<script src="../ui/js/custom/products.js"></script>
+
 <!-- begin:article -->
 <div class="row">
     <!-- begin:sidebar -->
@@ -91,27 +93,11 @@
                             <div class="widget-title" style="background-color: #ed9c28; border-color: #d58512; color: #fff">
                                 <h3>Рахунок</h3>
                             </div>
-                            <ul class="cart list-unstyled">
-                                <li>
-                                    <div class="row">
-                                        <div class="col-sm-7 col-xs-7">1 <a href="product_detail.html">Сонячна панель</a></div>
-                                        <div class="col-sm-5 col-xs-5 text-right"><strong>2600 грн</strong> <a href="#"><i class="fa fa-trash-o"></i></a></div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="row">
-                                        <div class="col-sm-7 col-xs-7">3 <a href="product_detail.html">Кріплення кронштейн</a></div>
-                                        <div class="col-sm-5 col-sm-5 text-right"><strong>300 грн</strong> <a href="#"><i class="fa fa-trash-o"></i></a></div>
-                                    </div>
-                                </li>
+                            <ul class="cart list-unstyled" id="cart-widget-list">
+
                             </ul>
-                            <ul class="list-unstyled total-price">
-                                <li>
-                                    <div class="row">
-                                        <div class="col-sm-8 col-xs-8">Загальна сума</div>
-                                        <div class="col-sm-4 col-xs-4 text-right">3500 грн</div>
-                                    </div>
-                                </li>
+                            <ul class="list-unstyled" id="cart-widget-total">
+
                             </ul>
                         </div>
 
@@ -127,3 +113,9 @@
     <!-- end:content -->
 </div>
 <!-- end:article -->
+
+<script>
+    $(function() {
+        $('#widget-cart-buttons').attr('class','hidden');
+    });
+</script>

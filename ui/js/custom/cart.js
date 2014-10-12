@@ -19,7 +19,6 @@ var updateCart = function() {
             totalPrice = 0;
 
         basketProducts.forEach(function(product){
-            console.log(product);
             var productPrice = product.price*product.amount;
             totalPrice += productPrice;
 
@@ -46,8 +45,6 @@ var updateCart = function() {
                 '</td>' +
                 '</tr>';
         });
-
-        console.log(prod);
 
         prod += '<tr>' +
             '<td colspan="6">&nbsp;</td>' +

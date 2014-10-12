@@ -3,7 +3,6 @@ $(document).ready(function () {
     // get basketData:
 
     $('#product-count').html(getBasketLength());
-    console.log(getBasketLength(), getToBasket());
     basketProducts = getToBasket();
 
 
@@ -18,7 +17,6 @@ $(document).ready(function () {
 
 	$('#search-panel').on('click',function(e){
         e.stopPropagation();
-		console.log(e);
 	});
 
     $.jStorage.listenKeyChange("products", function(key, action){
@@ -114,7 +112,6 @@ var productInBasket = function(id) {
 
     inBasket = false;
     products.forEach(function(product){
-        console.log(product);
        if (product.id == id) {
            inBasket = true;
        }

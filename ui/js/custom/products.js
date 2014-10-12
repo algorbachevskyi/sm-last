@@ -34,7 +34,7 @@ var updateCartWidget = function() {
             '<div class="col-sm-6 col-xs-4 text-right">' + totalPrice + '.00 грн</div>' +
             '</div>' +
             '</li>' +
-            '<li>' +
+            '<li id="widget-cart-buttons">' +
             '<div class="row">' +
             '<div class="col-sm-6 col-xs-6">' +
             '<a class="btn btn-default" href="/cart">До кошика</a>' +
