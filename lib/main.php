@@ -97,7 +97,11 @@ class Main {
                 $productsResult[0]['images'] = $productPictures;
 
                 // get similar products:
-                $similarProducts = $db->exec('SELECT * FROM products WHERE category_id="'.$category['id'].'" LIMIT 4');
+                $similarProducts = $db->exec('SELECT * FROM products WHERE category_id="'.$productsResult[0]['category_id'].'" AND id <> "'.$id.'" LIMIT 4');
+                foreach ($similarProducts as $key=>$product) {
+                    $productPic = $db->exec('SELECT * FROM pictures WHERE product_id="'.$product['id'].'"');
+                    $similarProducts[$key]['images'] = $productPic;
+                }
 
                 $f3->set('product',$productsResult[0]);
                 $f3->set('products',$similarProducts);

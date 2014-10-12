@@ -34,6 +34,10 @@ var saveToBasket = function(product) {
 
     $('#product-count').html(getBasketLength());
     $('#to-basket').html('<i class="fa fa-check"></i> товар в кошику!').attr('class','btn btn-sm btn-danger');
+    $('#count-select-group').addClass('hidden');
+
+    updateCartWidget();
+
     var notice = new PNotify({
         title: 'Кошик',
         text: 'Товар додано до кошика!',
@@ -84,6 +88,25 @@ var deleteFromBasket = function(id) {
 var getBasketLength = function() {
     var products = $.jStorage.get('products', []);
     return products.length;
+};
+
+var updateProductAmount = function(id, amount) {
+    var products = $.jStorage.get('products', []),
+        totalPrice = $('#total-price').html()*1;
+    products.forEach(function(product){
+        if (product.id == id) {
+            product.amount = amount;
+            totalPrice -= $('#product-price-' + product.id).html()*1;
+            $('#product-price-' + product.id).html(product.amount*product.price*1);
+            $('#total-price').html(totalPrice*1 + product.amount*product.price*1);
+
+        }
+    });
+
+    $.jStorage.set('products', products);
+
+
+
 };
 
 var productInBasket = function(id) {

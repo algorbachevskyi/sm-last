@@ -18,9 +18,14 @@
                     <p><?= $product['price']?>.00 грн</p>
                     <p><?php echo $product['count'] == 0 ? '<i class="text-muted">Відсутній в продажі</i>' : 'В наявності'?></p>
                 </div>
-                <div class="product-item-badge">Радимо!</div>
+                <div id="badge-<?= $product['id']?>">
+                    <div class="product-item-badge">Радимо!</div>
+                </div>
             </div>
         </div>
+    <script>
+        if (productInBasket('<?= $product["id"]?>')) {$('#badge-<?= $product["id"]?>').html('<div class="product-item-badge in-basket">В кошику!</div>')}
+    </script>
     <?php endforeach; ?>
 
     <!--<div class="col-md-3 col-sm-3 col-xs-6">-->

@@ -948,10 +948,14 @@ a:hover.no-underline{
 /* cart */
 .img-cart{
     display: block;
-    max-width: 50px;
+    max-width: 60px;
     height: auto;
     margin-left: auto;
     margin-right: auto;
+    background: #fff;
+    border: 1px solid #EAEAEA;
+    border-radius: 3px;
+    padding: 5px;
 }
 
 /* Pagination */

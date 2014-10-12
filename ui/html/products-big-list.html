@@ -1,3 +1,6 @@
+
+<script src="../ui/js/custom/products.js"></script>
+
 <!-- begin:article -->
 <div class="row">
     <!-- begin:sidebar -->
@@ -8,37 +11,11 @@
                     <div class="widget-title">
                         <h3>Кошик</h3>
                     </div>
-                    <ul class="cart list-unstyled">
-                        <li>
-                            <div class="row">
-                                <div class="col-sm-7 col-xs-7">1 <a href="product_detail.html">Сонячна панель</a></div>
-                                <div class="col-sm-5 col-xs-5 text-right"><strong>2600 грн</strong> <a href="#"><i class="fa fa-trash-o"></i></a></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="row">
-                                <div class="col-sm-7 col-xs-7">3 <a href="product_detail.html">Кріплення кронштейн</a></div>
-                                <div class="col-sm-5 col-sm-5 text-right"><strong>300 грн</strong> <a href="#"><i class="fa fa-trash-o"></i></a></div>
-                            </div>
-                        </li>
+                    <ul class="cart list-unstyled" id="cart-widget-list">
+
                     </ul>
-                    <ul class="list-unstyled total-price">
-                        <li>
-                            <div class="row">
-                                <div class="col-sm-8 col-xs-8">Загальна сума</div>
-                                <div class="col-sm-4 col-xs-4 text-right">3500 грн</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-6">
-                                    <a class="btn btn-default" href=/cart#">До кошика</a>
-                                </div>
-                                <div class="col-sm-6 col-xs-6 text-right">
-                                    <a class="btn btn-primary" href="/order">Оформити</a>
-                                </div>
-                            </div>
-                        </li>
+                    <ul class="list-unstyled" id="cart-widget-total">
+
                     </ul>
                 </div>
                 <!-- break -->
@@ -57,7 +34,7 @@
                     <div class="widget-title">
                         <h3>Допомога</h3>
                     </div>
-                    <p>Потрібна консультація? Напишіть нам <a href="contact.html">листа</a> і ми обов'язково зв'яжемося з Вами!</p>
+                    <p>Потрібна консультація? Напишіть нам <a href="/contacts">листа</a> і ми обов'язково зв'яжемося з Вами!</p>
                 </div>
 
             </div>
@@ -92,11 +69,17 @@
                                     <p><?= $product['price']?>.00 грн</p>
                                     <p><?php echo $product['count'] == 0 ? '<i class="text-muted">Відсутній в продажі</i>' : 'В наявності'?></p>
                                 </div>
-                                <?php if($product['recomended'] == 1):?>
-                                    <div class="product-item-badge">Радимо!</div>
-                                <?php endif;?>
+                                <div id="badge-<?= $product['id']?>">
+                                    <?php if($product['recomended'] == 1):?>
+                                        <div class="product-item-badge">Радимо!</div>
+                                    <?php endif;?>
+                                </div>
                             </div>
                         </div>
+
+                    <script>
+                        if (productInBasket('<?= $product["id"]?>')) {$('#badge-<?= $product["id"]?>').html('<div class="product-item-badge in-basket">В кошику!</div>')}
+                    </script>
                     <?php endforeach;?>
 
                     <!-- end:item -->

@@ -1,3 +1,5 @@
+<script src="../ui/js/custom/products.js"></script>
+
 <!-- begin:article -->
 <div class="row">
 <!-- begin:sidebar -->
@@ -8,37 +10,11 @@
                 <div class="widget-title">
                     <h3>Кошик</h3>
                 </div>
-                <ul class="cart list-unstyled">
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-7 col-xs-7">1 <a href="product_detail.html">Сонячна панель</a></div>
-                            <div class="col-sm-5 col-xs-5 text-right"><strong>2600 грн</strong> <a href="#"><i class="fa fa-trash-o"></i></a></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-7 col-xs-7">3 <a href="product_detail.html">Кріплення кронштейн</a></div>
-                            <div class="col-sm-5 col-sm-5 text-right"><strong>300 грн</strong> <a href="#"><i class="fa fa-trash-o"></i></a></div>
-                        </div>
-                    </li>
+                <ul class="cart list-unstyled" id="cart-widget-list">
+
                 </ul>
-                <ul class="list-unstyled total-price">
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-8 col-xs-8">Загальна сума</div>
-                            <div class="col-sm-4 col-xs-4 text-right">3500 грн</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-sm-6 col-xs-6">
-                                <a class="btn btn-default" href="/cart">До кошика</a>
-                            </div>
-                            <div class="col-sm-6 col-xs-6 text-right">
-                                <a class="btn btn-primary" href="/order">Оформити</a>
-                            </div>
-                        </div>
-                    </li>
+                <ul class="list-unstyled" id="cart-widget-total">
+
                 </ul>
             </div>
 
@@ -140,7 +116,7 @@
                     <tr>
                         <td colspan="3"><span class="price"><?= $product['price']?>.00 грн</span></td>
                     </tr>
-                    <tr>
+                    <tr id="count-select-group">
                         <td><strong>Кількість</strong></td>
                         <td>:</td>
                         <td>
@@ -202,17 +178,22 @@
             <?php foreach($products as $prod):?>
                 <div class="col-md-3 col-sm-3 col-xs-6">
                     <div class="thumbnail product-item">
-                        <a href="/product/<?= $prod['id']?>"><img alt="" src="<?php echo count($prod['images']) == 0 ? 'ui/img/product1.jpg' : 'ui/products_imgs/'.$prod['images'][0]['url']; ?>"></a>
+                        <a href="/product/<?= $prod['id']?>"><img alt="" src="<?php echo count($prod['images']) == 0 ? 'ui/img/product1.jpg' : '../ui/products_imgs/'.$prod['images'][0]['url']; ?>"></a>
                         <div class="caption">
                             <h5><?= $prod['name']?></h5>
                             <p><?= $prod['price']?>.00 грн</p>
                             <p><?php echo $prod['count'] == 0 ? '<i class="text-muted">Відсутній в продажі</i>' : 'В наявності'?></p>
                         </div>
-                        <?php if($prod['recomended'] == 1):?>
+                        <div id="badge-<?= $prod['id']?>">
+                            <?php if($prod['recomended'] == 1):?>
                             <div class="product-item-badge">Радимо!</div>
-                        <?php endif;?>
+                            <?php endif;?>
+                        </div>
                     </div>
                 </div>
+            <script>
+                if (productInBasket('<?= $prod["id"]?>')) {$('#badge-<?= $prod["id"]?>').html('<div class="product-item-badge in-basket">В кошику!</div>')}
+            </script>
             <?php endforeach; ?>
 
         </div>
@@ -244,6 +225,7 @@
     prodId = <?= $product['id']?>;
 
     if (productInBasket(prodId)) {
+        $('#count-select-group').addClass('hidden');
         $('#to-basket').html('<i class="fa fa-check"></i> товар в кошику!').addClass('btn-danger');
     } else {
         $('#to-basket').html('+ в кошик').addClass('btn-primary');

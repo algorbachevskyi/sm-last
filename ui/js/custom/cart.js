@@ -24,11 +24,11 @@ var updateCart = function() {
             totalPrice += productPrice;
 
             prod += '<tr>' +
-                '<td><img src="ui/products_imgs/' + product.url + '" class="img-cart" /></td>' +
-                '<td>' + product.data + '</p></td>' +
+                '<td><a href="/product/' + product.id + '"><img src="ui/products_imgs/' + product.url + '" class="img-cart" /></a></td>' +
+                '<td>' + product.name + '</p></td>' +
                 '<td>' +
                 '<form class="form-inline">' +
-                '<select class="form-control">';
+                '<select class="form-control" onchange="updateProductAmount(\'' + product.id + '\',this.value);">';
 
             for (var i=1; i<=product.count; i++ ) {
                 prod += '<option value="' + i + '"';
@@ -39,11 +39,11 @@ var updateCart = function() {
             }
 
             prod += '</select>' +
-                '<a class="btn btn-primary" rel="tooltip" title="Видалити" onclick="deleteFromBasket(\'' + product.id + '\'); updateCart();"><i class="fa fa-trash-o"></i></a>' +
                 '</form>' +
                 '</td>' +
                 '<td>' + product.price + '.00 грн</td>' +
-                '<td>' + productPrice + '.00 грн</td>' +
+                '<td><span id="product-price-' + product.id + '">' + productPrice + '</span>.00 грн' + '<a class="btn btn-primary pull-right" rel="tooltip" title="Видалити" onclick="deleteFromBasket(\'' + product.id + '\'); updateCart();"><i class="fa fa-trash-o"></i></a>' +
+                '</td>' +
                 '</tr>';
         });
 
@@ -54,7 +54,7 @@ var updateCart = function() {
             '</tr>' +
             '<tr>' +
             '<td colspan="4" class="text-right"><strong>Загальна Вартість</strong></td>' +
-            '<td>' + totalPrice + '.00 грн</td>' +
+            '<td><span id="total-price">' + totalPrice + '</span>.00 грн</td>' +
             '</tr>';
 
         $('#cart-table-body').html(prod);

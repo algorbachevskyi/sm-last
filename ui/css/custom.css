@@ -74,6 +74,9 @@
     border-color: #b43500;
 }
 
+.product-item-badge.in-basket {
+    background-color: #c83700;
+}
 /* Cart styles: */
 
 #cart-table, #empty-cart-text {
