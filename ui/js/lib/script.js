@@ -23,6 +23,23 @@ $(document).ready(function () {
         console.log(key + " has been " + action);
     });
 
+    // search logic:
+    $('#search-category span').on('click',function(){
+        $('#search-category span').attr('class','');
+        $('#'+ this.id).attr('class','active');
+    });
+
+    $('#search-price span').on('click',function(){
+        $('#search-price span').attr('class','');
+        $('#'+ this.id).attr('class','active');
+    });
+
+    $('#search-recom span').on('click',function(){
+        $('#search-recom span').attr('class','');
+        $('#'+ this.id).attr('class','active');
+    });
+
+
 });
 
 var saveToBasket = function(product) {

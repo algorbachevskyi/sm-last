@@ -38,6 +38,14 @@
     cursor: pointer;
 }
 
+.search-content span:hover {
+    color: #ed9c28;
+}
+
+.search-content span.active {
+    color: #ed9c28;
+}
+
 .btn-search {
 	float: right;
 	margin-bottom: 10px;

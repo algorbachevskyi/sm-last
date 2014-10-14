@@ -63,33 +63,36 @@
 
                             <div class="wrapper">
 
-                                <div class="search-column">
+                                <div class="search-column" id="search-category">
                                     <div class="search-title">Категорія</div>
                                     <div class="search-content">
 
                                         <?php foreach($categories as $id=>$name):?>
-                                            <span><?=$name?></span>
+                                            <span id="<?= $id?>"><?=$name?></span>
                                         <?php endforeach;?>
+                                        <span id="0"> Всі категорії</span>
 
                                     </div>
                                 </div>
 
-                                <div class="search-column">
+                                <div class="search-column" id="search-price">
                                     <div class="search-title">Ціна</div>
                                     <div class="search-content">
-                                        <span> Менше 500 грн</span>
-                                        <span> 500 грн - 1000грн</span>
-                                        <span> 1000 грн - 1500грн</span>
-                                        <span> 1500 грн - 2000грн</span>
-                                        <span> Більше 2000грн</span>
+                                        <span id="1"> Менше 500 грн</span>
+                                        <span id="500"> 500 грн - 1000грн</span>
+                                        <span id="1000"> 1000 грн - 1500грн</span>
+                                        <span id="1500"> 1500 грн - 2000грн</span>
+                                        <span id="2000"> Більше 2000грн</span>
+                                        <span id="100500"> Увесь діапазон</span>
                                     </div>
                                 </div>
 
-                                <div class="search-column">
+                                <div class="search-column" id="search-recom">
                                     <div class="search-title">Рекомендація</div>
                                     <div class="search-content">
-                                        <span> Рекомендовані</span>
-                                        <span> Без рекомендації</span>
+                                        <span id="recom"> Рекомендовані</span>
+                                        <span id="not-recom"> Без рекомендації</span>
+                                        <span id="all"> Всі</span>
 
                                     </div>
                                 </div>
