@@ -71,6 +71,56 @@ class Admin {
 
     function order($f3) {
 
+        if ($f3->get('SESSION.user') !== 'admin') {
+            $f3->reroute('/login');
+        } else {
+            $db = $f3->get('db');
+            $id = $f3->get('PARAMS["id"]');
+
+            if (is_numeric($id)) {
+                // get orders:
+                $orders=new DB\SQL\Mapper($db,'orders');
+                $ordersResult = array_map(array($orders,'cast'),$orders->find(array('id= ?',$id)));
+
+                if (empty($ordersResult)) {
+                    $f3->reroute('/admin');
+                }
+
+                $order = $ordersResult[0];
+
+                // get client for order:
+                $client = new DB\SQL\Mapper($db,'clients');
+                $clientResult = array_map(array($client,'cast'),$client->find(array('id= ?',$order["client_id"])));
+                $order['client'] = $clientResult[0];
+
+                // get products for order:
+
+                $query = 'SELECT p.*, op.product_amount FROM products AS p JOIN order_product AS op ON p.id=op.product_id WHERE op.order_id="'.$order["id"].'"';
+                $orderProductsResult = $db->exec($query);
+                $order['products'] = $orderProductsResult;
+
+                $f3->set('order',$order);
+                echo View::instance()->render('a-header.html');
+                echo View::instance()->render('a-order.html');
+                echo View::instance()->render('a-footer.html');
+            } else {
+                $f3->reroute('/admin');
+            }
+        }
+    }
+
+    function editOrder($f3) {
+
+        $action = $_POST['action'];
+        $orderId = $_POST['order'];
+        $db = $f3->get('db');
+
+        if ($action == 'decline') {
+            $db->exec('UPDATE orders SET status="-1" WHERE id="'. $orderId .'"');
+        } elseif ($action == 'accept') {
+            $db->exec('UPDATE orders SET status="0" WHERE id="'. $orderId .'"');
+        }
+        $f3->reroute('/admin');
     }
 
     function settings($f3) {

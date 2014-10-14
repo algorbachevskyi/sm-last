@@ -108,8 +108,8 @@
                                         <?php endforeach;?>
                                     </td>
                                     <td><b><?= $order['cost'] ?>.00 грн</b></td>
-                                    <td><?= $order['date'] ?></td>
-                                    <td><?= $order['client']['name'] ?></td>
+                                    <td><?= date('d.m.Y, H:i:s', $order['date']) ?></td>
+                                    <td><?= $order['client']['name'] ?> <a href="/admin/<?= $order['id'];?>" class="pull-right"><i class="fa fa-arrow-circle-right fa-2x text-primary"></i></a></td>
 
                                 </tr>
                             <?php endif; ?>
@@ -147,7 +147,7 @@
                         <tbody>
 
                         <?php foreach($orders as $order): ?>
-                        <?php if($order['status'] == 1):?>
+                        <?php if($order['status'] == 0):?>
                         <tr>
                             <td><b><?= $order['id'] ?></b></td>
                             <td>
@@ -156,8 +156,8 @@
                                 <?php endforeach;?>
                             </td>
                             <td><b><?= $order['cost'] ?>.00 грн</b></td>
-                            <td><?= $order['date'] ?></td>
-                            <td><?= $order['client']['name'] ?></td>
+                            <td><?= date('d.m.Y, H:i:s', $order['date']) ?></td>
+                            <td><?= $order['client']['name'] ?> <a href="/admin/<?= $order['id']?>" class="pull-right"><i class="fa fa-arrow-circle-right fa-2x text-success"></i></a></td>
 
                         </tr>
                         <?php endif; ?>
@@ -195,7 +195,7 @@
                         <tbody>
 
                         <?php foreach($orders as $order): ?>
-                        <?php if($order['status'] == 1):?>
+                        <?php if($order['status'] == -1):?>
                         <tr>
                             <td><b><?= $order['id'] ?></b></td>
                             <td>
@@ -204,8 +204,8 @@
                                 <?php endforeach;?>
                             </td>
                             <td><b><?= $order['cost'] ?>.00 грн</b></td>
-                            <td><?= $order['date'] ?></td>
-                            <td><?= $order['client']['name'] ?></td>
+                            <td><?= date('d.m.Y, H:i:s', $order['date']) ?></td>
+                            <td><?= $order['client']['name'] ?> <a href="/admin/<?= $order['id'];?>" class="pull-right"><i class="fa fa-arrow-circle-right fa-2x text-danger"></i></a></td>
 
                         </tr>
                         <?php endif; ?>

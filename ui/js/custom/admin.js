@@ -139,8 +139,12 @@ $(function() {
 });
 
 var activate = function(tableId) {
-
     $('.order-table').hide();
     $('#' + tableId).show();
+};
 
+var editOrder = function(action, orderId) {
+    $('#edit-order-action').val(action);
+    $('#edit-order-id').val(orderId);
+    $('#edit-order-form').submit();
 };

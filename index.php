@@ -33,6 +33,7 @@ $f3->route('GET /admin/categories','admin->categories');
 $f3->route('GET /admin/category/add','admin->addCategory');
 $f3->route('GET /admin/category/@id','admin->editCategory');
 $f3->route('GET /admin/settings','admin->settings');
+$f3->route('GET /admin/@id','admin->order');
 
 $f3->route('POST /form-order','main->formOrder');
 
@@ -45,6 +46,7 @@ $f3->route('POST /admin/delete','admin->delete');
 $f3->route('POST /admin/product/edit','admin->edit');
 $f3->route('POST /admin/category/edit','admin->editCategory');
 $f3->route('POST /admin/settings','admin->settings');
+$f3->route('POST /editOrder','admin->editOrder');
 $f3->route('POST /upload','admin->upload');
 $f3->route('POST /removefile','admin->removeFile');
 //$f3->route('POST /admin','admin->index');

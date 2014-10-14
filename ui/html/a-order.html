@@ -1,0 +1,97 @@
+<!--<?php var_dump($order)?>-->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Замовлення #<?= $order['id']?>
+            <span class="<?= $order['status'] == 0 || $order['status'] == -1 ? 'hidden' : ''?>">
+                <button class="btn btn-success" onclick="editOrder('accept', <?= $order['id'] ?>)"><i class="fa fa-check-circle"></i> Виконати</button>
+                <button class="btn btn-danger" onclick="editOrder('decline', <?= $order['id'] ?>)"><i class="fa fa-times-circle"></i> Відхилити</button>
+            </span>
+        </h1>
+
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Загальна інформація
+            </div>
+            <div class="panel-body">
+                <div style="min-height: 10px;">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-right"> Номер в базі:</label>
+                    <span class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text-left"> <?= $order['id']?> </span>
+                </div>
+                <div class="clearfix"></div>
+                <div style="min-height: 10px;">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-right"> Дата:</label>
+                    <span class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text-left"> <?= date('d.m.Y, H:i:s', $order['date'])?> </span>
+                </div>
+                <div class="clearfix"></div>
+                <div style="min-height: 10px;">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-right"> Статус:</label>
+                    <span class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text-left"> <?= $order['status'] == 1 ? 'Активний' : ($order['status'] == 0 ? 'Виконано' : 'Відхилено')?> </span>
+                </div>
+                <div class="clearfix"></div>
+                <div style="min-height: 10px;">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-right"> Адреса доставки:</label>
+                    <span class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text-left"> <?= $order['client']['address'] ?> </span>
+                </div>
+                <div class="clearfix"></div>
+                <div style="min-height: 10px;">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-right"> Коментар:</label>
+                    <span class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text-left"> <?= $order['details']?> </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                Товарна накладна
+            </div>
+            <div class="panel-body">
+                <?php foreach($order['products'] as $product): ?>
+                    <p><strong><?= $product['product_amount'] ?></strong> x <a href="/product/<?= $product['id'] ?>" target="_blank"><?= $product['name'] ?></a> <span class="text-warning pull-right">[<?= $product['price']*$product['product_amount'] ?>.00 грн ]</span></p>
+                <?php endforeach;?>
+            </div>
+            <div class="panel-footer text-right">
+                Загальна сума: <strong class="text-danger"><?= $order['cost']?>.00 грн</strong>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                Інформація про клієнта
+            </div>
+            <div class="panel-body">
+                <div style="min-height: 10px;">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-right">  Ім'я:</label>
+                    <span class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text-left"> <?= $order['client']['name']?> </span>
+                </div>
+                <div class="clearfix"></div>
+                <div style="min-height: 10px;">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-right"> Телефон:</label>
+                    <span class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text-left"> <?= $order['client']['tel']?> </span>
+                </div>
+                <div class="clearfix"></div>
+                <div style="min-height: 10px;">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-right"> Емейл:</label>
+                    <span class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text-left"> <?= $order['client']['email']?> </span>
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-4 -->
+</div>
+
+<form action="/editOrder" method="post" class="hidden" id="edit-order-form">
+    <input type="hidden" id="edit-order-action" name="action" value=""/>
+    <input type="hidden" id="edit-order-id" name="order" value=""/>
+</form>
