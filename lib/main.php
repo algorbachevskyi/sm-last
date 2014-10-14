@@ -197,5 +197,49 @@ class Main {
         echo View::instance()->render('order.html');
         echo View::instance()->render('footer.html');
 
+
+    }
+
+    function formOrder($f3) {
+
+        if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {return;}
+
+
+        $db = $f3->get('db');
+
+        $name = $_POST['userName'];
+        $tel = $_POST['userTel'];
+        $mail = $_POST['userEmail'];
+        $address = $_POST['orderAddress'];
+        $details = $_POST['orderDetails'];
+        $products = $_POST['orderProducts'];
+        $totalPrice = $_POST['totalPrice'];
+
+        // save client:
+        $clients=new DB\SQL\Mapper($db,'clients');
+        $clients->name = $name;
+        $clients->tel = $tel;
+        $clients->email = $mail;
+        $clients->address = $address;
+        $clients->save();
+
+        // save order:
+        $orders=new DB\SQL\Mapper($db,'orders');
+        $orders->date = time();
+        $orders->cost = $totalPrice;
+        $orders->client_id = $clients->id;
+        $orders->status = 1;
+        $orders->details = $details;
+        $orders->save();
+
+        // chain order and products:
+        foreach ($products as $key=>$value) {
+            $orderProduct=new DB\SQL\Mapper($db,'order_product');
+            $orderProduct->order_id = $orders->id;
+            $orderProduct->product_id = $key;
+            $orderProduct->product_amount = $value;
+            $orderProduct->save();
+        }
+
     }
 }

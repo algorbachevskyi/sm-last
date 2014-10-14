@@ -11,28 +11,65 @@ class Admin {
             $db = $f3->get('db');
 
             // get products:
-            $products=new DB\SQL\Mapper($db,'products');
-            $productsResult = array_map(array($products,'cast'),$products->find(''));
-            $f3->set('products',$productsResult);
+//            $products=new DB\SQL\Mapper($db,'products');
+//            $productsResult = array_map(array($products,'cast'),$products->find(''));
+//            $f3->set('products',$productsResult);
 
             // get categories:
-            $categories=new DB\SQL\Mapper($db,'categories');
-            $categoriesResult = array_map(array($categories,'cast'),$categories->find(''));
-            foreach ($categoriesResult as $category) {
-                $categs[$category['id']] = $category['name'];
-            }
-            $f3->set('categories',$categs);
+//            $categories=new DB\SQL\Mapper($db,'categories');
+//            $categoriesResult = array_map(array($categories,'cast'),$categories->find(''));
+//            foreach ($categoriesResult as $category) {
+//                $categs[$category['id']] = $category['name'];
+//            }
+//            $f3->set('categories',$categs);
+
+
 
             // get orders:
-            $products=new DB\SQL\Mapper($db,'orders');
-            $productsResult = array_map(array($products,'cast'),$products->find(''));
-            $f3->set('products',$productsResult);
+            $orders=new DB\SQL\Mapper($db,'orders');
+            $ordersResult = array_map(array($orders,'cast'),$orders->find(''));
+
+            $activeOrders = $acceptedOrders = $declinedOrders = 0;
+
+            foreach ($ordersResult as $key=>$order) {
+
+                if ($order['status'] == 1) {
+                    $activeOrders += 1;
+                } elseif ($order['status'] == 0) {
+                    $acceptedOrders +=1;
+                } elseif ($order['status'] == -1) {
+                    $declinedOrders +=1;
+                }
+
+                // get client for order:
+                $client = new DB\SQL\Mapper($db,'clients');
+                $clientResult = array_map(array($client,'cast'),$client->find(array('id= ?',$order["client_id"])));
+                $ordersResult[$key]['client'] = $clientResult[0];
+
+                // get products for order:
+
+                $query = 'SELECT p.*, op.product_amount FROM products AS p JOIN order_product AS op ON p.id=op.product_id WHERE op.order_id="'.$order["id"].'"';
+                $orderProductsResult = $db->exec($query);
+//                var_dump($orderProductsResult);
+                $ordersResult[$key]['products'] = $orderProductsResult;
+
+            }
+
+
+            $f3->set('orders',$ordersResult);
+            $f3->set('activeOrders',$activeOrders);
+            $f3->set('acceptedOrders',$acceptedOrders);
+            $f3->set('declinedOrders',$declinedOrders);
 
             echo View::instance()->render('a-header.html');
             echo View::instance()->render('admin.html');
             echo View::instance()->render('a-footer.html');
 
         }
+
+    }
+
+    function order($f3) {
 
     }
 

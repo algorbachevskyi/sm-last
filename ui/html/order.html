@@ -55,57 +55,69 @@
                 <h3>Форма оформлення замовлення</h3>
                 <hr />
 
-                <div class="row">
-                    <div class="col-md-6 col-lg-6">
-                        <form id="product" name="product-form" action="/admin/product/add" method="post">
-                            <div class="form-group">
-                                <label>Ваше П.І.Б</label>
-                                <input id="name" name="name" class="form-control" placeholder="Прізвище Ім'я По-батькові" required>
-                            </div>
+                <h3 id="order-form-empty" class="text-center"> Ваш кошик пустий. <br/> Щоб оформити замовлення, наповніть його</h3>
+                <div id="order-form-wrapper">
 
-                            <label>Контактний телефон</label>
-                            <div class="form-group input-group">
-                                <span class="input-group-addon">+38</span>
-                                <input type="tel" id="tel" name="tel" class="form-control" placeholder="XXX-XXXXXXX" required>
-                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                            </div>
 
-                            <label>E-mail</label>
-                            <div class="form-group input-group">
-                                <input type="email" id="email" name="tel" class="form-control" placeholder="xxx@xxxx.xxx" required>
-                                <span class="input-group-addon">@</span>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <form id="product" name="product-form" action="" method="post">
+                                <div class="form-group">
+                                    <label>Ваше П.І.Б <span class="text-danger">*</span></label>
+                                    <input id="order-user-name" name="order-user-name" class="form-control" placeholder="Прізвище Ім'я По-батькові" required>
+                                </div>
 
-                            <div class="form-group">
-                                <label>Коментар</label>
-                                <textarea id="details" name="details" class="form-control" rows="4"></textarea>
-                            </div>
+                                <label>Контактний телефон<span class="text-danger">*</span></label>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">+38</span>
+                                    <input type="text" id="order-user-tel" name="order-user-tel" class="form-control" placeholder="XXX-XXXXXXX" required>
+                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                </div>
 
-                            <input type="hidden" name="add_product" value="true"/>
-                            <input type="hidden" name="product-files" id="product-files" value=""/>
+                                <label>E-mail<span class="text-danger">*</span></label>
+                                <div class="form-group input-group">
+                                    <input type="email" id="order-user-email" name="order-user-email" class="form-control" placeholder="xxx@xxxx.xxx" required>
+                                    <span class="input-group-addon">@</span>
+                                </div>
 
-                        </form>
-                    </div>
+                                <div class="form-group">
+                                    <label>Адреса доставки<span class="text-danger">*</span></label>
+                                    <textarea id="order-address" name="order-address" class="form-control" rows="4"></textarea>
+                                </div>
 
-                    <div class="col-xs-12 col-md-5 col-lg-5 sidebar pull-right">
-                        <br/>
-                        <div class="widget">
-                            <div class="widget-title" style="background-color: #ed9c28; border-color: #d58512; color: #fff">
-                                <h3>Рахунок</h3>
-                            </div>
-                            <ul class="cart list-unstyled" id="cart-widget-list">
+                                <div class="form-group">
+                                    <label>Коментар</label>
+                                    <textarea id="order-details" name="order-details" class="form-control" rows="4"></textarea>
+                                </div>
 
-                            </ul>
-                            <ul class="list-unstyled" id="cart-widget-total">
+                                <h6><span class="text-danger">*</span><span class="text-muted"> - обов'язкові поля</span></h6>
+                                <!--<input type="hidden" name="add_product" value="true"/>-->
+                                <!--<input type="hidden" name="product-files" id="product-files" value=""/>-->
 
-                            </ul>
+                            </form>
                         </div>
 
+                        <div class="col-xs-12 col-md-5 col-lg-5 sidebar pull-right">
+                            <br/>
+                            <div class="widget">
+                                <div class="widget-title" style="background-color: #ed9c28; border-color: #d58512; color: #fff">
+                                    <h3>Рахунок</h3>
+                                </div>
+                                <ul class="cart list-unstyled" id="cart-widget-list">
+
+                                </ul>
+                                <ul class="list-unstyled" id="cart-widget-total">
+
+                                </ul>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
-                <a href="" class="btn btn-primary pull-left">Оформити замовлення</a>
-                <a href="/cart" class="btn btn-default pull-right">Назад до кошика</a>
+                <a onclick="formOrder();" class="btn btn-primary pull-left" id="order-button">Оформити замовлення</a>
+                <a href="/products" class="btn btn-default hidden" id="back-to-products">До сторінки продуктів</a>
+                <a href="/cart" class="btn btn-default pull-right" id="back-button">Назад до кошика</a>
 
             </div>
         </div>

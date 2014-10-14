@@ -33,6 +33,7 @@ $f3->route('GET /admin/categories','admin->categories');
 $f3->route('GET /admin/category/add','admin->addCategory');
 $f3->route('GET /admin/category/@id','admin->editCategory');
 
+$f3->route('POST /form-order','main->formOrder');
 
 $f3->route('POST /login','admin->login');
 $f3->route('POST /logout','admin->logout');

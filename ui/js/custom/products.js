@@ -1,5 +1,20 @@
 $(function() {
     updateCartWidget();
+
+    $('.form-group').on('click',function(){
+        var errorClass = ' has-error';
+        this.className = this.className.replace(errorClass,"");
+    });
+
+    if (getBasketLength() == 0) {
+        $('#order-form-wrapper').addClass('hidden');
+        $('#order-button').addClass('hidden');
+        $('#back-button').addClass('hidden');
+        $('#back-to-products').removeClass('hidden');
+    } else {
+        $('#order-form-empty').addClass('hidden');
+    }
+
 });
 
 var updateCartWidget = function() {
@@ -49,4 +64,67 @@ var updateCartWidget = function() {
         widgetTotal.html(widgetTotalHTML);
 
     }
-}
+};
+
+var formOrder = function() {
+
+    // collect user info:
+    var userName = $('#order-user-name'),
+        userTel = $('#order-user-tel'),
+        userEmail = $('#order-user-email'),
+        orderAddress = $('#order-address'),
+        orderDetails = $('#order-details'),
+        orderProducts = {};
+
+    var validName = isValid(userName),
+        validTel = isValid(userTel),
+        validMail = isValid(userEmail),
+        validAddress = isValid(orderAddress);
+
+    // validation:
+    if (!validName || !validTel || !validMail || !validAddress) return;
+
+    // hide order form:
+    addSpiner('order-form-wrapper');
+    $('#order-button').addClass('hidden');
+    $('#back-button').addClass('hidden');
+
+    // get cart info:
+    var products = getToBasket(),
+        totalPrice = 0;
+
+    products.forEach(function(product){
+        totalPrice += (product.price*1)*(product.amount*1);
+        orderProducts[product.id] = product.amount;
+    });
+
+    $.ajax({
+        url: "/form-order",
+        type: "POST",
+        data: {
+            'userName' : userName.val(),
+            'userTel' : userTel.val(),
+            'userEmail' : userEmail.val(),
+            'orderAddress' : orderAddress.val(),
+            'orderDetails' : orderDetails.val(),
+            'orderProducts' : orderProducts,
+            'totalPrice' : totalPrice
+        },
+        success: function(){
+            clearBasket();
+
+            $('#back-to-products').removeClass('hidden');
+            $('#order-form-wrapper').html('<h3 class="text-center">Дякуємо! <br/> Ваше замовлення успішно збережено! <br/> Наші кур\'єри обов\'язково звяжуться з Вами та уточнять всі деталі доставки.</h3>')
+        }
+    });
+
+};
+
+var isValid = function(field) {
+    var valid = true;
+    if (field.val() == '') {
+        valid = false;
+        field.parent().addClass('has-error');
+    }
+    return valid;
+};
