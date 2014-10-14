@@ -1229,3 +1229,7 @@ a:hover.no-underline{
         transform: rotate(450deg);
     }
 }
+
+/*#search-panel span {*/
+    /*cursor: pointer;*/
+/*}*/

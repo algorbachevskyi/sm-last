@@ -64,89 +64,32 @@
                             <div class="wrapper">
 
                                 <div class="search-column">
-                                    <div class="search-title">Тип</div>
+                                    <div class="search-title">Категорія</div>
                                     <div class="search-content">
 
-                                        <span>Батареї</span>
-                                        <span>Акомулятори</span>
-                                        <span>Панелі</span>
-                                        <span>Батареї</span>
-                                        <span>Акомулятори</span>
-                                        <span>Панелі</span>
-                                        <span>Батареї</span>
-                                        <span>Акомулятори</span>
-                                        <span>Панелі</span>
+                                        <?php foreach($categories as $id=>$name):?>
+                                            <span><?=$name?></span>
+                                        <?php endforeach;?>
 
                                     </div>
                                 </div>
 
                                 <div class="search-column">
-                                    <div class="search-title">Потужність</div>
+                                    <div class="search-title">Ціна</div>
                                     <div class="search-content">
-
-                                        <span>10 Ват</span>
-                                        <span>100 Ват</span>
-                                        <span>200 Ват</span>
-                                        <span>500 Ват</span>
-                                        <span>1000 Ват</span>
-                                        <span>1300 Ват</span>
-
+                                        <span> Менше 500 грн</span>
+                                        <span> 500 грн - 1000грн</span>
+                                        <span> 1000 грн - 1500грн</span>
+                                        <span> 1500 грн - 2000грн</span>
+                                        <span> Більше 2000грн</span>
                                     </div>
                                 </div>
 
                                 <div class="search-column">
-                                    <div class="search-title">Виробник</div>
+                                    <div class="search-title">Рекомендація</div>
                                     <div class="search-content">
-
-                                        <span>Samsung</span>
-                                        <span>SunSystems</span>
-                                        <span>Solar System</span>
-                                        <span>Tesla</span>
-                                        <span>Mercedes Benz</span>
-
-                                    </div>
-                                </div>
-
-                                <div class="search-column">
-                                    <div class="search-title">Тип</div>
-                                    <div class="search-content">
-
-                                        <span>Батареї</span>
-                                        <span>Акомулятори</span>
-                                        <span>Панелі</span>
-                                        <span>Батареї</span>
-                                        <span>Акомулятори</span>
-                                        <span>Панелі</span>
-                                        <span>Батареї</span>
-                                        <span>Акомулятори</span>
-                                        <span>Панелі</span>
-
-                                    </div>
-                                </div>
-
-                                <div class="search-column">
-                                    <div class="search-title">Потужність</div>
-                                    <div class="search-content">
-
-                                        <span>10 Ват</span>
-                                        <span>100 Ват</span>
-                                        <span>200 Ват</span>
-                                        <span>500 Ват</span>
-                                        <span>1000 Ват</span>
-                                        <span>1300 Ват</span>
-
-                                    </div>
-                                </div>
-
-                                <div class="search-column">
-                                    <div class="search-title">Виробник</div>
-                                    <div class="search-content">
-
-                                        <span>Samsung</span>
-                                        <span>SunSystems</span>
-                                        <span>Solar System</span>
-                                        <span>Tesla</span>
-                                        <span>Mercedes Benz</span>
+                                        <span> Рекомендовані</span>
+                                        <span> Без рекомендації</span>
 
                                     </div>
                                 </div>

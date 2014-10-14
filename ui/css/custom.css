@@ -1,11 +1,13 @@
 /* SEARCH PANEL STYLES */
 
 .search-panel {
-	background-color: #222;	
+	background-color: #222;
+    width: 540px !important;
 }
 
 .search-panel > li {
 	padding: 10px;
+    padding-left: 20px;
 	color: #fff;
 }
 
@@ -16,7 +18,7 @@
 }
 
 .search-column {
-	width: 16%;
+    width: 32%;
 	display: inline-block;
 	vertical-align: top;
 }
@@ -33,26 +35,28 @@
 .search-content span {
 	display: block;
 	padding: 5px 0;
+    cursor: pointer;
 }
 
 .btn-search {
 	float: right;
 	margin-bottom: 10px;
+    margin-top: -30px;
 	background-color: transparent;
 	color: #fff;
 }
 
-@media (min-width: 768px) {
-	.search-panel {
-		width: 750px;
-	}
-}
-
-@media (min-width: 992px) {
-	.search-panel {
-		width: 970px;
-	}
-}
+/*@media (min-width: 768px) {*/
+	/*.search-panel {*/
+		/*width: 750px;*/
+	/*}*/
+/*}*/
+/**/
+/*@media (min-width: 992px) {*/
+	/*.search-panel {*/
+		/*width: 970px;*/
+	/*}*/
+/*}*/
 
 /* ACCOUNT MENU STYLES  */
 
