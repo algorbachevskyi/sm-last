@@ -73,6 +73,27 @@ class Admin {
 
     }
 
+    function settings($f3) {
+        if ($f3->get('SESSION.user') !== 'admin') {
+            $f3->reroute('/login');
+        } else {
+
+            $db = $f3->get('db');
+            if (isset($_POST['update_settings'])) {
+                $res = $db->exec('UPDATE settings SET email="'.$_POST['email'].'" WHERE id="1"');
+                $f3->set('email',$_POST['email']);
+
+            } else {
+                $res = $db->exec('SELECT email FROM settings WHERE id=1');
+                $f3->set('email',$res[0]['email']);
+            }
+
+            echo View::instance()->render('a-header.html');
+            echo View::instance()->render('a-settings.html');
+            echo View::instance()->render('a-footer.html');
+        }
+    }
+
     function login($f3) {
         echo View::instance()->render('login.html');
 

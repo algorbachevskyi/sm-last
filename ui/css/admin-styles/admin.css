@@ -148,3 +148,7 @@ ul.pictures li {
 .table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
     background-color: rgba(238, 255, 134, 0.25);
 }
+
+.order-table {
+    display: none;
+}

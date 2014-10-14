@@ -82,6 +82,7 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="/admin">Sun Market - панель адміністратора</a>
+        <a class="navbar-brand pull-right" href="/" target="_blank">Переглянути сайт</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -94,9 +95,12 @@
                 <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <!--<li class="divider"></li>-->
                 <li>
-                    <div style="padding: 5px; cursor: pointer;" onclick="$('#logout-form').submit();"><i class="fa fa-sign-out fa-fw"></i> Вийти</div>
+                    <a href="admin/settings"><i class="fa fa-cogs fa-fw"></i> Налаштування</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a onclick="$('#logout-form').submit();"><i class="fa fa-sign-out fa-fw"></i> Вийти</a>
                 </li>
             </ul>
             <form action="/logout" method="post" id="logout-form" class="hidden"></form>

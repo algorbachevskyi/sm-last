@@ -1,6 +1,7 @@
 $(function() {
 
     $('#side-menu').metisMenu();
+    activate('activeTable');
 
 });
 
@@ -136,3 +137,10 @@ $(function() {
     }
 
 });
+
+var activate = function(tableId) {
+
+    $('.order-table').hide();
+    $('#' + tableId).show();
+
+};
